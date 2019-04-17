@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QSqlDatabase>
+#include <QDebug>
+#include <QSqlQuery>
 
 namespace Ui {
 class MainWindow;
@@ -21,7 +24,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-
+    QSqlDatabase userinfo;
 };
 
 #endif // MAINWINDOW_H
