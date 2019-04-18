@@ -30,16 +30,19 @@ SOURCES += \
         mainwindow.cpp \
     user.cpp \
     player.cpp \
-    questioner.cpp
+    questioner.cpp \
+    signupdialog.cpp
 
 HEADERS += \
         mainwindow.h \
     user.h \
     player.h \
-    questioner.h
+    questioner.h \
+    signupdialog.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    signupdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
