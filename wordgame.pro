@@ -31,14 +31,16 @@ SOURCES += \
     user.cpp \
     player.cpp \
     questioner.cpp \
-    signupdialog.cpp
+    signupdialog.cpp \
+    base.cpp
 
 HEADERS += \
         mainwindow.h \
     user.h \
     player.h \
     questioner.h \
-    signupdialog.h
+    signupdialog.h \
+    base.h
 
 FORMS += \
         mainwindow.ui \

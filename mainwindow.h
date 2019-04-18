@@ -3,9 +3,8 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
-#include <QSqlDatabase>
-#include <QDebug>
-#include <QSqlQuery>
+#include "base.h"
+#include "signupdialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -19,21 +18,17 @@ public:
 
     ~MainWindow(); /* destructor */
 
-    void printDatabase(); /* print all records in the database user */
-
-    void clearDatabase(); /* remove all records in the database user */
-
 private slots:
     void on_signInBtn_clicked(); /* slots when click the sign in button */
 
     void on_signUpBtn_clicked(); /* slots when click the sign up button */
 
-    void receiveData(QString regUsr, QString regPwd); /* reveive username and password from the sign up dialog */
+    void receiveData(QString regUsr, QString regName, QString regPwd, bool regRole); /* reveive username and password from the sign up dialog */
+
+    void on_quitBtn_clicked();
 
 private:
     Ui::MainWindow *ui;
-
-    QSqlDatabase userinfo; /* database of userinfo */
 };
 
 #endif // MAINWINDOW_H

@@ -2,6 +2,8 @@
 #define SIGNUPDIALOG_H
 
 #include <QDialog>
+#include <QMessageBox>
+#include "base.h"
 
 namespace Ui {
 class signUpDialog;
@@ -19,10 +21,10 @@ private:
     Ui::signUpDialog *ui;
 
 signals:
-    void sendData(QString, QString); /* send data to mainwindow */
+    void sendData(QString, QString, QString, bool); /* send data to mainwindow */
 
 private slots:
-    void on_buttonBox_accepted(); /* slots when clicked OK */
+    void on_okBtn_clicked();
 };
 
 #endif // SIGNUPDIALOG_H
