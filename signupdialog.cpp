@@ -3,18 +3,15 @@
 
 signUpDialog::signUpDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::signUpDialog)
-{
+    ui(new Ui::signUpDialog) {
     ui->setupUi(this);
 }
 
-signUpDialog::~signUpDialog()
-{
+signUpDialog::~signUpDialog() {
     delete ui;
 }
 
-void signUpDialog::on_buttonBox_accepted()
-{
-    emit sendData(ui->usrLineEdit->text(), ui->pwdLineEdit->text());
+void signUpDialog::on_buttonBox_accepted() {
+    emit sendData(ui->usrLineEdit->text(), ui->pwdLineEdit->text()); /* send data to mainwindow */
 }
 
