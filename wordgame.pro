@@ -32,7 +32,8 @@ SOURCES += \
     player.cpp \
     questioner.cpp \
     signupdialog.cpp \
-    base.cpp
+    playerwindow.cpp \
+    userdb.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,11 +41,13 @@ HEADERS += \
     player.h \
     questioner.h \
     signupdialog.h \
-    base.h
+    playerwindow.h \
+    userdb.h
 
 FORMS += \
         mainwindow.ui \
-    signupdialog.ui
+    signupdialog.ui \
+    playerwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

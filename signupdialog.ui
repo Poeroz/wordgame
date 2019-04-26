@@ -100,6 +100,14 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>usrLineEdit</tabstop>
+  <tabstop>nameLineEdit</tabstop>
+  <tabstop>pwdLineEdit</tabstop>
+  <tabstop>playerBtn</tabstop>
+  <tabstop>questionerBtn</tabstop>
+  <tabstop>okBtn</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
  <buttongroups>

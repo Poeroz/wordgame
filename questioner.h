@@ -3,10 +3,12 @@
 
 #include "user.h"
 
-class questioner : public user
-{
+class questioner : public user {
 public:
     questioner();
+    questioner(const user &base,
+               const int &_questionCnt);
+    int getQuestionCnt();
 
 private:
     int questionCnt;

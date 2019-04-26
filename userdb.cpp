@@ -1,4 +1,4 @@
-#include "base.h"
+#include "userdb.h"
 
 QSqlDatabase userinfo;
 
@@ -20,7 +20,6 @@ void initDatabase() {
                    "experience int,"
                    "questionCnt int)");
     }
-
 }
 
 void printDatabase() {
