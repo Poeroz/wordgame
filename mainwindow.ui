@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>619</width>
-    <height>500</height>
+    <width>315</width>
+    <height>301</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,34 +17,34 @@
    <widget class="QLabel" name="usrLabel">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>210</y>
+      <x>60</x>
+      <y>90</y>
       <width>58</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>username</string>
+     <string>用户名</string>
     </property>
    </widget>
    <widget class="QLabel" name="pwdLabel">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>240</y>
+      <x>60</x>
+      <y>120</y>
       <width>57</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>password</string>
+     <string>密码</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="usrLineEdit">
     <property name="geometry">
      <rect>
-      <x>296</x>
-      <y>210</y>
+      <x>146</x>
+      <y>90</y>
       <width>103</width>
       <height>24</height>
      </rect>
@@ -53,8 +53,8 @@
    <widget class="QLineEdit" name="pwdLineEdit">
     <property name="geometry">
      <rect>
-      <x>296</x>
-      <y>240</y>
+      <x>146</x>
+      <y>120</y>
       <width>103</width>
       <height>24</height>
      </rect>
@@ -66,58 +66,58 @@
    <widget class="QLabel" name="titleLabel">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>100</y>
-      <width>181</width>
+      <x>80</x>
+      <y>20</y>
+      <width>151</width>
       <height>61</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>36</pointsize>
+      <pointsize>24</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>WordGame</string>
+     <string>单词消除游戏</string>
     </property>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>269</y>
-      <width>191</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QPushButton" name="signUpBtn">
-       <property name="text">
-        <string>sign up</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="signInBtn">
-       <property name="text">
-        <string>sign in</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
    </widget>
    <widget class="QPushButton" name="quitBtn">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>400</y>
+      <x>230</x>
+      <y>200</y>
       <width>80</width>
       <height>24</height>
      </rect>
     </property>
     <property name="text">
-     <string>Quit</string>
+     <string>退出</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="signUpBtn">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>149</y>
+      <width>68</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>注册</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="signInBtn">
+    <property name="geometry">
+     <rect>
+      <x>157</x>
+      <y>149</y>
+      <width>68</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>登录</string>
     </property>
    </widget>
   </widget>
@@ -126,8 +126,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>619</width>
-     <height>25</height>
+     <width>315</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>

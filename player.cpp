@@ -1,7 +1,5 @@
 #include "player.h"
 
-player::player() {}
-
 player::player(const user &base,
                const int &_levelCnt,
                const int &_experience):

@@ -18,8 +18,8 @@
     <rect>
      <x>71</x>
      <y>96</y>
-     <width>223</width>
-     <height>114</height>
+     <width>233</width>
+     <height>117</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -33,14 +33,14 @@
     <item row="2" column="0">
      <widget class="QLabel" name="pwdLabel">
       <property name="text">
-       <string>password</string>
+       <string>密码</string>
       </property>
      </widget>
     </item>
     <item row="3" column="1">
      <widget class="QRadioButton" name="playerBtn">
       <property name="text">
-       <string>Player</string>
+       <string>闯关者</string>
       </property>
       <attribute name="buttonGroup">
        <string notr="true">buttonGroup</string>
@@ -50,7 +50,7 @@
     <item row="3" column="2">
      <widget class="QRadioButton" name="questionerBtn">
       <property name="text">
-       <string>Questioner</string>
+       <string>出题者</string>
       </property>
       <attribute name="buttonGroup">
        <string notr="true">buttonGroup</string>
@@ -60,7 +60,7 @@
     <item row="3" column="0">
      <widget class="QLabel" name="roleLabel">
       <property name="text">
-       <string>my role</string>
+       <string>角色</string>
       </property>
      </widget>
     </item>
@@ -70,14 +70,14 @@
     <item row="0" column="0">
      <widget class="QLabel" name="usrLabel">
       <property name="text">
-       <string>username</string>
+       <string>用户名</string>
       </property>
      </widget>
     </item>
     <item row="1" column="0">
      <widget class="QLabel" name="nameLabel">
       <property name="text">
-       <string>nickname</string>
+       <string>昵称</string>
       </property>
      </widget>
     </item>
@@ -89,14 +89,14 @@
   <widget class="QPushButton" name="okBtn">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>230</x>
      <y>230</y>
      <width>80</width>
      <height>24</height>
     </rect>
    </property>
    <property name="text">
-    <string>OK</string>
+    <string>立即注册</string>
    </property>
   </widget>
  </widget>

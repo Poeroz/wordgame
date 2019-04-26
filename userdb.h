@@ -1,24 +1,41 @@
+/**
+ * @file userdb.h
+ *
+ * @brief 存储用户信息的数据库。
+ * @author 房庆凯 - 2017211131
+ */
+
 #ifndef USERDB_H
 #define USERDB_H
 
-#define PLAYER 0
-#define QUESTIONER 1
+#define PLAYER 0                    /**< 闯关者。 */
+#define QUESTIONER 1                /**< 出题者。 */
 
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
 
+/**
+ * @brief 用户数据库内各属性的枚举类型。
+ */
 enum enumUserDatabase {
     USERNAME, NICKNAME, PASSWORD, ROLE, GRADE, LEVELCNT, EXPERIENCE, QUESTIONCNT
 };
 
-extern QSqlDatabase userinfo; /* database of userinfo */
+/**
+ * @brief 初始化用户数据库。
+ */
+void initUserdb();
 
-void initDatabase(); /* initinalize the database user */
+/**
+ * @brief 输出用户数据库内的所有记录。
+ */
+void printUserdb();
 
-void printDatabase(); /* print all records in the database user */
-
-void clearDatabase(); /* remove all records in the database user */
+/**
+ * @brief 清空用户数据库。
+ */
+void clearUserdb();
 
 #endif // USERDB_H

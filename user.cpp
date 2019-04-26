@@ -1,7 +1,5 @@
 #include "user.h"
 
-user::user() {}
-
 user::user(const QString &_username,
            const QString &_nickname,
            const QString &_password,

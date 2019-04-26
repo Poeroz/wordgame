@@ -1,44 +1,60 @@
 #include "userdb.h"
 
-QSqlDatabase userinfo;
-
-void initDatabase() {
-    userinfo = QSqlDatabase::addDatabase("QSQLITE", "connection_userinfo"); /* add connection */
-    userinfo.setDatabaseName("user.db"); /* set database name as userinfo.db */
-    if (!userinfo.open()) { /* open database userinfo */
+void initUserdb() {
+    QSqlDatabase userdb;
+    userdb = QSqlDatabase::addDatabase("QSQLITE", "userConnect");           /* 建立连接 */
+    userdb.setDatabaseName("user.db");                                      /* 数据库名称为 user.db */
+    if (!userdb.open()) {
         qDebug() << "not open!";
     }
     else {
-        QSqlQuery query(userinfo);
-        /* create a table called user */
-        query.exec("create table user (username varchar(20) primary key, "
-                   "nickname varchar(20), "
-                   "password varchar(20), "
-                   "role bool, "
-                   "grade int, "
-                   "levelCnt int,"
-                   "experience int,"
-                   "questionCnt int)");
+        QSqlQuery query(userdb);
+        /* 建立一个表，名称为 user */
+        query.exec("create table user (username varchar(20) primary key, "  /* 用户名 */
+                   "nickname varchar(20), "                                 /* 昵称 */
+                   "password varchar(20), "                                 /* 密码 */
+                   "role bool, "                                            /* 角色 */
+                   "grade int, "                                            /* 等级 */
+                   "levelCnt int,"                                          /* 已闯关卡数 */
+                   "experience int,"                                        /* 经验值 */
+                   "questionCnt int)");                                     /* 出题数目 */
     }
 }
 
-void printDatabase() {
-    QSqlQuery query(userinfo);
-    if (!query.exec("select * from user")) {
-        qDebug() << "print error";
+void printUserdb() {
+    QSqlDatabase userdb;
+    userdb = QSqlDatabase::database("userConnect");                         /* 建立连接 */
+    userdb.setDatabaseName("user.db");                                      /* 数据库名称为 user.db */
+    if (!userdb.open()) {
+        qDebug() << "not open!";
     }
     else {
-        while (query.next()) {
-            for (int i = 0; i < 8; i++) {
-                qDebug() << query.value(i).toString();
+        QSqlQuery query(userdb);
+        if (!query.exec("select * from user")) {
+            qDebug() << "print error";
+        }
+        else {
+            while (query.next()) {
+                for (int i = 0; i < 8; i++) {
+                    qDebug() << query.value(i).toString();
+                }
             }
         }
     }
+
 }
 
-void clearDatabase() {
-    QSqlQuery query(userinfo);
-    if (!query.exec("delete from user")) {
-        qDebug() << "clear error";
+void clearUserdb() {
+    QSqlDatabase userdb;
+    userdb = QSqlDatabase::database("userConnect");                         /* 建立连接 */
+    userdb.setDatabaseName("user.db");                                      /* 数据库名称为 user.db */
+    if (!userdb.open()) {
+        qDebug() << "not open!";
+    }
+    else {
+        QSqlQuery query(userdb);
+        if (!query.exec("delete from user")) {
+            qDebug() << "clear error";
+        }
     }
 }

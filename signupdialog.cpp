@@ -41,22 +41,30 @@ void signUpDialog::on_okBtn_clicked() {
             ui->pwdLineEdit->setFocus();
         }
         else {
-            QSqlQuery query(userinfo);
-            QString str = "select * from user where username = :usr";
-            query.prepare(str);
-            query.bindValue(":usr", usr);
-            if (!query.exec()) {
-                qDebug() << "query error";
+            QSqlDatabase userdb;
+            userdb = QSqlDatabase::database("userConnect");                         /* 建立连接 */
+            userdb.setDatabaseName("user.db");                                      /* 数据库名称为 user.db */
+            if (!userdb.open()) {
+                qDebug() << "not open!";
             }
             else {
-                if (query.next()) {
-                    QMessageBox::warning(this, tr("提示"), tr("该用户名已被使用"), QMessageBox::Ok);
-                    ui->usrLineEdit->setFocus();
+                QSqlQuery query(userdb);
+                QString str = "select * from user where username = :usr";
+                query.prepare(str);
+                query.bindValue(":usr", usr);
+                if (!query.exec()) {
+                    qDebug() << "query error";
                 }
                 else {
-                    emit sendData(usr, name, pwd, role);
-                    QMessageBox::warning(this, tr(""), tr("注册成功！"), QMessageBox::Ok);
-                    this->accept();
+                    if (query.next()) {
+                        QMessageBox::warning(this, tr("提示"), tr("该用户名已被使用"), QMessageBox::Ok);
+                        ui->usrLineEdit->setFocus();
+                    }
+                    else {
+                        emit sendData(usr, name, pwd, role);
+                        QMessageBox::warning(this, tr(""), tr("注册成功！"), QMessageBox::Ok);
+                        this->accept();
+                    }
                 }
             }
         }
