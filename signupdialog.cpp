@@ -22,7 +22,7 @@ void signUpDialog::on_okBtn_clicked() {
     else {
         QString roleName = btn->objectName();
         bool role;
-        if(!QString::compare(roleName, "playerBtn")) {
+        if (!QString::compare(roleName, "playerBtn")) {
             role = PLAYER;
         }
         else {

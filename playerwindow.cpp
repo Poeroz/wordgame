@@ -17,3 +17,8 @@ void playerWindow::init(player user) {
     ui->levelShow->setText(QString::number(user.getLevelCnt()));
     ui->expShow->setText(QString::number(user.getExperience()));
 }
+
+void playerWindow::on_allUserBtn_clicked() {
+    allUserWidget *widget = new allUserWidget;
+    widget->show();
+}

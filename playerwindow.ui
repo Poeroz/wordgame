@@ -6,18 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>621</width>
+    <height>360</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="allUserBtn">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>350</x>
       <y>90</y>
       <width>221</width>
       <height>31</height>
@@ -27,11 +27,11 @@
      <string>点击此处查看所有用户信息</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="startBtn">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>300</y>
+      <x>260</x>
+      <y>260</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -50,17 +50,24 @@
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="nicknameLabel">
+     <item row="2" column="1">
+      <widget class="QLabel" name="levelShow">
        <property name="text">
-        <string>昵称</string>
+        <string>TextLabel</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="nicknameShow">
+     <item row="3" column="0">
+      <widget class="QLabel" name="expLabel">
        <property name="text">
-        <string>TextLabel</string>
+        <string>经验值</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="levelLabel">
+       <property name="text">
+        <string>已闯关卡数</string>
        </property>
       </widget>
      </item>
@@ -78,29 +85,22 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="levelLabel">
-       <property name="text">
-        <string>已闯关卡数</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLabel" name="levelShow">
+     <item row="3" column="1">
+      <widget class="QLabel" name="expShow">
        <property name="text">
         <string>TextLabel</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="expLabel">
+     <item row="0" column="0">
+      <widget class="QLabel" name="nicknameLabel">
        <property name="text">
-        <string>经验值</string>
+        <string>昵称</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QLabel" name="expShow">
+     <item row="0" column="1">
+      <widget class="QLabel" name="nicknameShow">
        <property name="text">
         <string>TextLabel</string>
        </property>
@@ -109,17 +109,6 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

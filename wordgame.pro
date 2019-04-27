@@ -26,6 +26,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+	alluserwidget.cpp \
         main.cpp \
         mainwindow.cpp \
     user.cpp \
@@ -36,6 +37,7 @@ SOURCES += \
     userdb.cpp
 
 HEADERS += \
+	alluserwidget.h \
         mainwindow.h \
     user.h \
     player.h \
@@ -45,6 +47,7 @@ HEADERS += \
     userdb.h
 
 FORMS += \
+	alluserwidget.ui \
         mainwindow.ui \
     signupdialog.ui \
     playerwindow.ui
