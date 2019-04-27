@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>questionerFilterDialog</class>
- <widget name="questionerFilterDialog" class="QDialog">
+ <widget class="QDialog" name="questionerFilterDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -12,6 +13,61 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <widget class="QPushButton" name="okBtn">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>240</y>
+     <width>61</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>OK</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>90</y>
+     <width>174</width>
+     <height>85</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="nicknameLabel">
+      <property name="text">
+       <string>昵称</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="nicknameLineEdit"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="gradeLabel">
+      <property name="text">
+       <string>等级</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="gradeLineEdit"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="questionCntLabel">
+      <property name="text">
+       <string>出题数</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="questionCntLineEdit"/>
+    </item>
+   </layout>
+  </widget>
  </widget>
  <resources/>
  <connections/>

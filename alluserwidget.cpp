@@ -5,15 +5,14 @@ allUserWidget::allUserWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::allUserWidget) {
     ui->setupUi(this);
-    showPlayerTable();
+    showPlayerTable(QString("role = %1").arg(PLAYER));
 }
 
 allUserWidget::~allUserWidget() {
     delete ui;
 }
 
-void allUserWidget::sortByColumn(int col)
-{
+void allUserWidget::sortByColumn(int col) {
     QSqlTableModel *pMode = dynamic_cast<QSqlTableModel *>(ui->tableView->model());
     bool ascending = (ui->tableView->horizontalHeader()->sortIndicatorSection()==col
                       && ui->tableView->horizontalHeader()->sortIndicatorOrder()==Qt::DescendingOrder);
@@ -21,7 +20,8 @@ void allUserWidget::sortByColumn(int col)
     pMode->sort(col, order);
 }
 
-void allUserWidget::showPlayerTable() {
+void allUserWidget::showPlayerTable(QString str) {
+    qDebug() << str;
     QSqlDatabase userdb = QSqlDatabase::database("userConnect");
     if (!userdb.open()) {
         qDebug() << "not open!";
@@ -30,7 +30,7 @@ void allUserWidget::showPlayerTable() {
         QSqlTableModel *pModel = new QSqlTableModel(this, userdb);
         pModel->setTable("user");
         pModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
-        pModel->setFilter(QString("role = '%1'").arg(PLAYER));
+        pModel->setFilter(str);
         pModel->select();
         pModel->removeColumn(QUESTIONCNT);
         pModel->removeColumn(ROLE);
@@ -51,7 +51,8 @@ void allUserWidget::showPlayerTable() {
     }
 }
 
-void allUserWidget::showQuestionerTable() {
+void allUserWidget::showQuestionerTable(QString str) {
+    qDebug() << str;
     QSqlDatabase userdb = QSqlDatabase::database("userConnect");
     if (!userdb.open()) {
         qDebug() << "not open!";
@@ -60,7 +61,7 @@ void allUserWidget::showQuestionerTable() {
         QSqlTableModel *pModel = new QSqlTableModel(this, userdb);
         pModel->setTable("user");
         pModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
-        pModel->setFilter(QString("role = '%1'").arg(QUESTIONER));
+        pModel->setFilter(str);
         pModel->select();
         pModel->removeColumn(EXPERIENCE);
         pModel->removeColumn(LEVELCNT);
@@ -82,9 +83,57 @@ void allUserWidget::showQuestionerTable() {
 }
 
 void allUserWidget::on_playerBtn_clicked() {
-    showPlayerTable();
+    showPlayerTable(QString("role = %1").arg(PLAYER));
 }
 
 void allUserWidget::on_questionerBtn_clicked() {
-    showQuestionerTable();
+    showQuestionerTable(QString("role = %1").arg(QUESTIONER));
+}
+
+void allUserWidget::playerReceiveData(QString str) {
+    showPlayerTable(str);
+}
+
+void allUserWidget::questionerReceiveData(QString str) {
+    showQuestionerTable(str);
+}
+
+void allUserWidget::on_filterBtn_clicked() {
+    QRadioButton* btn = qobject_cast<QRadioButton*>(ui->buttonGroup->checkedButton());
+    QString roleName = btn->objectName();
+    bool role;
+    if (!QString::compare(roleName, "playerBtn")) {
+        role = PLAYER;
+    }
+    else {
+        role = QUESTIONER;
+    }
+    if (role == PLAYER) {
+        playerFilterDialog *dlg = new playerFilterDialog;
+        connect(dlg, SIGNAL(playerSendData(QString)), this, SLOT(playerReceiveData(QString)));
+        dlg->exec();
+    }
+    else {
+        questionerFilterDialog *dlg = new questionerFilterDialog;
+        connect(dlg, SIGNAL(questionerSendData(QString)), this, SLOT(questionerReceiveData(QString)));
+        dlg->exec();
+    }
+}
+
+void allUserWidget::on_seeAllBtn_clicked() {
+    QRadioButton* btn = qobject_cast<QRadioButton*>(ui->buttonGroup->checkedButton());
+    QString roleName = btn->objectName();
+    bool role;
+    if (!QString::compare(roleName, "playerBtn")) {
+        role = PLAYER;
+    }
+    else {
+        role = QUESTIONER;
+    }
+    if (role == PLAYER) {
+        showPlayerTable(QString("role = %1").arg(PLAYER));
+    }
+    else {
+        showQuestionerTable(QString("role = %1").arg(QUESTIONER));
+    }
 }
