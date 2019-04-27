@@ -43,7 +43,6 @@ void signUpDialog::on_okBtn_clicked() {
         else {
             QSqlDatabase userdb;
             userdb = QSqlDatabase::database("userConnect");                         /* 建立连接 */
-            userdb.setDatabaseName("user.db");                                      /* 数据库名称为 user.db */
             if (!userdb.open()) {
                 qDebug() << "not open!";
             }

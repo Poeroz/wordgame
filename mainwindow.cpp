@@ -14,18 +14,17 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_signInBtn_clicked() {
-    QString usr = ui->usrLineEdit->text();                  /* 用户名 */
-    QString pwd = ui->pwdLineEdit->text();                  /* 密码 */
-    if (usr == "") {                                        /* 用户名为空 */
+    QString usr = ui->usrLineEdit->text();                                  /* 用户名 */
+    QString pwd = ui->pwdLineEdit->text();                                  /* 密码 */
+    if (usr == "") {                                                        /* 用户名为空 */
         QMessageBox::warning(this, tr("提示"), tr("用户名不能为空"), QMessageBox::Ok);
     }
-    else if (pwd == "") {                                   /* 密码为空 */
+    else if (pwd == "") {                                                   /* 密码为空 */
         QMessageBox::warning(this, tr("提示"), tr("密码不能为空"), QMessageBox::Ok);
     }
     else {
         QSqlDatabase userdb;
-        userdb = QSqlDatabase::database("userConnect");                         /* 建立连接 */
-        userdb.setDatabaseName("user.db");                                      /* 数据库名称为 user.db */
+        userdb = QSqlDatabase::database("userConnect");                     /* 建立连接 */
         if (!userdb.open()) {
             qDebug() << "not open!";
         }
@@ -39,7 +38,7 @@ void MainWindow::on_signInBtn_clicked() {
                 qDebug() << "query error";
             }
             else {
-                if (query.next()) {                             /* 在数据库中找到该账户 */
+                if (query.next()) {                                         /* 在数据库中找到该账户 */
                     /* QMessageBox::information(this, tr("Successful"), tr("Sign in successfully!"), QMessageBox::Ok); */
                     user base = user(query.value(USERNAME).toString(),
                                      query.value(NICKNAME).toString(),
@@ -51,8 +50,8 @@ void MainWindow::on_signInBtn_clicked() {
                                                 query.value(EXPERIENCE).toInt());
                         playerWindow *newWindow = new playerWindow;
                         newWindow->init(newUser);
-                        this->hide();                           /* 隐藏当前窗口 */
-                        newWindow->show();                      /* 显示闯关者游戏窗口 */
+                        this->hide();                                       /* 隐藏当前窗口 */
+                        newWindow->show();                                  /* 显示闯关者游戏窗口 */
                     }
                     else {
                         questioner nowUser = questioner(base, query.value(QUESTIONCNT).toInt());
@@ -61,10 +60,10 @@ void MainWindow::on_signInBtn_clicked() {
                          */
                     }
                 }
-                else {                                          /* 未找到该账户的记录 */
+                else {                                                      /* 未找到该账户的记录 */
                     QMessageBox::warning(this, tr("提示"), tr("用户名或密码错误"), QMessageBox::Ok);
-                    ui->pwdLineEdit->clear();                   /* 清空密码栏 */
-                    ui->pwdLineEdit->setFocus();                /* 设置焦点，重新输入密码 */
+                    ui->pwdLineEdit->clear();                               /* 清空密码栏 */
+                    ui->pwdLineEdit->setFocus();                            /* 设置焦点，重新输入密码 */
                 }         
             }
 
@@ -75,7 +74,6 @@ void MainWindow::on_signInBtn_clicked() {
 void MainWindow::receiveData(QString regUsr, QString regName, QString regPwd, bool regRole) {
     QSqlDatabase userdb;
     userdb = QSqlDatabase::database("userConnect");                         /* 建立连接 */
-    userdb.setDatabaseName("user.db");                                      /* 数据库名称为 user.db */
     if (!userdb.open()) {
         qDebug() << "not open!";
     }
@@ -99,7 +97,7 @@ void MainWindow::on_signUpBtn_clicked() {
     signUpDialog *dlg = new signUpDialog;
     connect(dlg, SIGNAL(sendData(QString, QString, QString, bool)),
             this, SLOT(receiveData(QString, QString, QString, bool)));
-    dlg->exec();                                            /* 打开注册框 */
+    dlg->exec();                                                            /* 打开注册框 */
 }
 
 void MainWindow::on_quitBtn_clicked() {
