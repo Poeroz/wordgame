@@ -31,6 +31,7 @@ SOURCES += \
         mainwindow.cpp \
 	playerfilterdialog.cpp \
 	questionerfilterdialog.cpp \
+	questionerwindow.cpp \
     user.cpp \
     player.cpp \
     questioner.cpp \
@@ -43,6 +44,7 @@ HEADERS += \
         mainwindow.h \
 	playerfilterdialog.h \
 	questionerfilterdialog.h \
+	questionerwindow.h \
     user.h \
     player.h \
     questioner.h \
@@ -55,6 +57,7 @@ FORMS += \
         mainwindow.ui \
 	playerfilterdialog.ui \
 	questionerfilterdialog.ui \
+	questionerwindow.ui \
     signupdialog.ui \
     playerwindow.ui
 

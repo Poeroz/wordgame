@@ -9,7 +9,6 @@
 #define PLAYERWINDOW_H
 
 #include <QMainWindow>
-#include <QTableView>
 #include "player.h"
 #include "userdb.h"
 #include "alluserwidget.h"

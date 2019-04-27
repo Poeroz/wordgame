@@ -54,10 +54,12 @@ void MainWindow::on_signInBtn_clicked() {
                         newWindow->show();                                  /* 显示闯关者游戏窗口 */
                     }
                     else {
-                        questioner nowUser = questioner(base, query.value(QUESTIONCNT).toInt());
-                        /**
-                         * @todo 出题者窗口
-                         */
+                        questioner newUser = questioner(base, query.value(QUESTIONCNT).toInt());
+                        questionerWindow *newWindow = new questionerWindow;
+                        newWindow->init(newUser);
+                        this->hide();
+                        newWindow->show();
+
                     }
                 }
                 else {                                                      /* 未找到该账户的记录 */

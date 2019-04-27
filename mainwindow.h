@@ -15,6 +15,7 @@
 #include "player.h"
 #include "questioner.h"
 #include "playerwindow.h"
+#include "questionerwindow.h"
 
 namespace Ui {
 class MainWindow;
