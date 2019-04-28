@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     initUserdb();
+    initWorddb();
+    printWorddb();
 }
 
 MainWindow::~MainWindow() {

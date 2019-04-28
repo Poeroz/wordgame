@@ -21,3 +21,8 @@ void questionerWindow::on_allUserBtn_clicked() {
     allUserWidget *widget = new allUserWidget;
     widget->show();
 }
+
+void questionerWindow::on_startBtn_clicked() {
+    questionerGamingWidget *widget = new questionerGamingWidget();
+    widget->show();
+}

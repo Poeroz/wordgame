@@ -30,33 +30,41 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
 	playerfilterdialog.cpp \
+	playergamingwidget.cpp \
 	questionerfilterdialog.cpp \
+	questionergamingwidget.cpp \
 	questionerwindow.cpp \
     user.cpp \
     player.cpp \
     questioner.cpp \
     signupdialog.cpp \
     playerwindow.cpp \
-    userdb.cpp
+    userdb.cpp \
+	worddb.cpp
 
 HEADERS += \
 	alluserwidget.h \
         mainwindow.h \
 	playerfilterdialog.h \
+	playergamingwidget.h \
 	questionerfilterdialog.h \
+	questionergamingwidget.h \
 	questionerwindow.h \
     user.h \
     player.h \
     questioner.h \
     signupdialog.h \
     playerwindow.h \
-    userdb.h
+    userdb.h \
+	worddb.h
 
 FORMS += \
 	alluserwidget.ui \
         mainwindow.ui \
 	playerfilterdialog.ui \
+	playergamingwidget.ui \
 	questionerfilterdialog.ui \
+	questionergamingwidget.ui \
 	questionerwindow.ui \
     signupdialog.ui \
     playerwindow.ui

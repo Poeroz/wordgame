@@ -12,6 +12,7 @@
 #include "player.h"
 #include "userdb.h"
 #include "alluserwidget.h"
+#include "playergamingwidget.h"
 
 namespace Ui {
 class playerWindow;
@@ -45,6 +46,8 @@ private slots:
      * @brief 点击显示所有用户的信息。
      */
     void on_allUserBtn_clicked();
+
+    void on_startBtn_clicked();
 
 private:
     Ui::playerWindow *ui;

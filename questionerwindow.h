@@ -5,7 +5,7 @@
 #include "questioner.h"
 #include "userdb.h"
 #include "alluserwidget.h"
-
+#include "questionergamingwidget.h"
 
 namespace Ui {
 class questionerWindow;
@@ -22,6 +22,8 @@ public:
 
 private slots:
     void on_allUserBtn_clicked();
+
+    void on_startBtn_clicked();
 
 private:
     Ui::questionerWindow *ui;

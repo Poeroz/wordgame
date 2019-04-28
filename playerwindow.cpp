@@ -22,3 +22,8 @@ void playerWindow::on_allUserBtn_clicked() {
     allUserWidget *widget = new allUserWidget;
     widget->show();
 }
+
+void playerWindow::on_startBtn_clicked() {
+    playerGamingWidget *widget = new playerGamingWidget(this);
+    widget->show();
+}
