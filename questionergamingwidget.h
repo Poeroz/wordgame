@@ -19,6 +19,8 @@ public:
 private slots:
     void on_okBtn_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::questionerGamingWidget *ui;
 };

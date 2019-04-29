@@ -34,6 +34,7 @@ void playerGamingWidget::showNewWord() {
             if (query.next()) {
                 ui->wordLabel->setText(query.value(TEXT).toString());
                 ui->progressBar->reset();
+
             }
         }
     }

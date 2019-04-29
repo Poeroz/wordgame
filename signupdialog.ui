@@ -98,6 +98,9 @@
    <property name="text">
     <string>立即注册</string>
    </property>
+   <property name="shortcut">
+    <string>Return</string>
+   </property>
   </widget>
  </widget>
  <tabstops>

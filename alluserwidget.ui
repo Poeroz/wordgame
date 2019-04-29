@@ -35,6 +35,9 @@
    <property name="text">
     <string>查询</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
   </widget>
   <widget class="QPushButton" name="seeAllBtn">
    <property name="geometry">
@@ -49,7 +52,7 @@
     <string>查看全部</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>180</x>
