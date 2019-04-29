@@ -5,11 +5,14 @@
 #include <QTimer>
 #include <QProgressBar>
 #include <QMessageBox>
+#include <QPair>
 #include "worddb.h"
 
 namespace Ui {
 class playerGamingWidget;
 }
+
+const int TOTAL = 5;
 
 class playerGamingWidget : public QWidget {
     Q_OBJECT
@@ -26,7 +29,7 @@ private slots:
 private:
     Ui::playerGamingWidget *ui;
     void showNewWord();
-    int restTime;
+    int restTime, nowLevel, passCnt;
     QTimer *myTimer;
 };
 
