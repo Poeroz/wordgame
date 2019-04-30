@@ -10,7 +10,7 @@
 
 #include <QDialog>
 #include <QMessageBox>
-#include "userdb.h"
+#include "userdbmanager.h"
 
 namespace Ui {
 class signUpDialog;
@@ -35,12 +35,6 @@ public:
 
 private:
     Ui::signUpDialog *ui;
-
-signals:
-    /**
-     * @brief 向登录窗口发送新用户的信息。
-     */
-    void sendData(QString, QString, QString, bool);
 
 private slots:
     /**

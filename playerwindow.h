@@ -10,7 +10,7 @@
 
 #include <QMainWindow>
 #include "player.h"
-#include "userdb.h"
+#include "userdbmanager.h"
 #include "alluserwidget.h"
 #include "playergamingwidget.h"
 

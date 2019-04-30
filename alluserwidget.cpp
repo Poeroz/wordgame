@@ -22,64 +22,53 @@ void allUserWidget::sortByColumn(int col) {
 
 void allUserWidget::showPlayerTable(QString str) {
     qDebug() << str;
-    QSqlDatabase userdb = QSqlDatabase::database("userConnect");
-    if (!userdb.open()) {
-        qDebug() << "not open!";
-    }
-    else {
-        QSqlTableModel *pModel = new QSqlTableModel(this, userdb);
-        pModel->setTable("user");
-        pModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
-        pModel->setFilter(str);
-        pModel->select();
-        pModel->removeColumn(QUESTIONCNT);
-        pModel->removeColumn(ROLE);
-        pModel->removeColumn(PASSWORD);
-        pModel->removeColumn(USERNAME);
-        pModel->setHeaderData(0, Qt::Horizontal, "昵称");
-        pModel->setHeaderData(1, Qt::Horizontal, "等级");
-        pModel->setHeaderData(2, Qt::Horizontal, "已闯关卡数");
-        pModel->setHeaderData(3, Qt::Horizontal, "经验值");
-        pModel->sort(0, Qt::AscendingOrder);
+    userdbManager man;
+    QSqlTableModel *pModel = new QSqlTableModel(this, man.getUserdb());
+    pModel->setTable("user");
+    pModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    pModel->setFilter(str);
+    pModel->select();
+    pModel->removeColumn(QUESTIONCNT);
+    pModel->removeColumn(ROLE);
+    pModel->removeColumn(PASSWORD);
+    pModel->removeColumn(USERNAME);
+    pModel->setHeaderData(0, Qt::Horizontal, "昵称");
+    pModel->setHeaderData(1, Qt::Horizontal, "等级");
+    pModel->setHeaderData(2, Qt::Horizontal, "已闯关卡数");
+    pModel->setHeaderData(3, Qt::Horizontal, "经验值");
+    pModel->sort(0, Qt::AscendingOrder);
 
-        ui->tableView->setModel(pModel);
-        ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
-        ui->tableView->setSelectionBehavior(QAbstractItemView::QAbstractItemView::SelectRows);
-        ui->tableView->verticalHeader()->hide();
-        ui->tableView->horizontalHeader()->setSectionsClickable(true);
-        connect(ui->tableView->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(sortByColumn(int)));
-    }
+    ui->tableView->setModel(pModel);
+    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tableView->setSelectionBehavior(QAbstractItemView::QAbstractItemView::SelectRows);
+    ui->tableView->verticalHeader()->hide();
+    ui->tableView->horizontalHeader()->setSectionsClickable(true);
+    connect(ui->tableView->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(sortByColumn(int)));
 }
 
 void allUserWidget::showQuestionerTable(QString str) {
-    qDebug() << str;
-    QSqlDatabase userdb = QSqlDatabase::database("userConnect");
-    if (!userdb.open()) {
-        qDebug() << "not open!";
-    }
-    else {
-        QSqlTableModel *pModel = new QSqlTableModel(this, userdb);
-        pModel->setTable("user");
-        pModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
-        pModel->setFilter(str);
-        pModel->select();
-        pModel->removeColumn(EXPERIENCE);
-        pModel->removeColumn(LEVELCNT);
-        pModel->removeColumn(ROLE);
-        pModel->removeColumn(PASSWORD);
-        pModel->removeColumn(USERNAME);
-        pModel->setHeaderData(0, Qt::Horizontal, "昵称");
-        pModel->setHeaderData(1, Qt::Horizontal, "等级");
-        pModel->setHeaderData(2, Qt::Horizontal, "出题数");
-        pModel->sort(0, Qt::AscendingOrder);
+    userdbManager man;
+    QSqlTableModel *pModel = new QSqlTableModel(this, man.getUserdb());
+    pModel->setTable("user");
+    pModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    pModel->setFilter(str);
+    pModel->select();
+    pModel->removeColumn(EXPERIENCE);
+    pModel->removeColumn(LEVELCNT);
+    pModel->removeColumn(ROLE);
+    pModel->removeColumn(PASSWORD);
+    pModel->removeColumn(USERNAME);
+    pModel->setHeaderData(0, Qt::Horizontal, "昵称");
+    pModel->setHeaderData(1, Qt::Horizontal, "等级");
+    pModel->setHeaderData(2, Qt::Horizontal, "出题数");
+    pModel->sort(0, Qt::AscendingOrder);
 
-        ui->tableView->setModel(pModel);
-        ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
-        ui->tableView->setSelectionBehavior(QAbstractItemView::QAbstractItemView::SelectRows);
-        ui->tableView->verticalHeader()->hide();
-        ui->tableView->horizontalHeader()->setSectionsClickable(true);
-        connect(ui->tableView->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(sortByColumn(int)));
-    }
+    ui->tableView->setModel(pModel);
+    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tableView->setSelectionBehavior(QAbstractItemView::QAbstractItemView::SelectRows);
+    ui->tableView->verticalHeader()->hide();
+    ui->tableView->horizontalHeader()->setSectionsClickable(true);
+    connect(ui->tableView->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(sortByColumn(int)));
 }
 
 void allUserWidget::on_playerBtn_clicked() {

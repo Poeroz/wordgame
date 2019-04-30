@@ -41,30 +41,15 @@ void signUpDialog::on_okBtn_clicked() {
             ui->pwdLineEdit->setFocus();
         }
         else {
-            QSqlDatabase userdb;
-            userdb = QSqlDatabase::database("userConnect");                         /* 建立连接 */
-            if (!userdb.open()) {
-                qDebug() << "not open!";
+             userdbManager man;
+             if (man.queryUserdb(usr)) {
+                QMessageBox::warning(this, tr("提示"), tr("该用户名已被使用"), QMessageBox::Ok);
+                ui->usrLineEdit->setFocus();
             }
             else {
-                QSqlQuery query(userdb);
-                QString str = "select * from user where username = :usr";
-                query.prepare(str);
-                query.bindValue(":usr", usr);
-                if (!query.exec()) {
-                    qDebug() << "query error";
-                }
-                else {
-                    if (query.next()) {
-                        QMessageBox::warning(this, tr("提示"), tr("该用户名已被使用"), QMessageBox::Ok);
-                        ui->usrLineEdit->setFocus();
-                    }
-                    else {
-                        emit sendData(usr, name, pwd, role);
-                        QMessageBox::warning(this, tr(""), tr("注册成功！"), QMessageBox::Ok);
-                        this->accept();
-                    }
-                }
+                man.addUserdb(usr, name, pwd, role);
+                QMessageBox::warning(this, tr(""), tr("注册成功！"), QMessageBox::Ok);
+                this->accept();
             }
         }
     }

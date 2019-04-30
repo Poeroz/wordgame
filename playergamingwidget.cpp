@@ -25,35 +25,18 @@ playerGamingWidget::~playerGamingWidget() {
 }
 
 void playerGamingWidget::showNewWord() {
-    QSqlDatabase worddb;
-    worddb = QSqlDatabase::database("wordConnect");
-    if (!worddb.open()) {
-        qDebug() << "not open!";
-    }
-    else {
-        QSqlQuery query(worddb);
-        QString str = "select * from word where length >= :min and length <= :max order by random() limit 1";
-        query.prepare(str);
-        query.bindValue(":min", nowLevel + 2);
-        query.bindValue(":max", nowLevel + 3);
-        if (!query.exec()) {
-            qDebug() << "query error";
-        }
-        else {
-            if (query.next()) {
-                passCnt++;
-                ui->levelLabel->setText(QString("第 %1 关").arg(nowLevel));
-                ui->passLabel->setText(QString("%1/%2").arg(passCnt).arg(TOTAL));
-                ui->wordLabel->setText(query.value(TEXT).toString());
-                ui->wordLabel->show();
-                ui->wordLineEdit->setEnabled(false);
-                myTimer->start(1000);
-                if (passCnt == TOTAL) {
-                    nowLevel++;
-                    passCnt = 0;
-                }
-            }
-        }
+    worddbManager man;
+    QString word = man.getRandWord(nowLevel + 2, nowLevel + 3);
+    passCnt++;
+    ui->levelLabel->setText(QString("第 %1 关").arg(nowLevel));
+    ui->passLabel->setText(QString("%1/%2").arg(passCnt).arg(TOTAL));
+    ui->wordLabel->setText(word);
+    ui->wordLabel->show();
+    ui->wordLineEdit->setEnabled(false);
+    myTimer->start(1000);
+    if (passCnt == TOTAL) {
+        nowLevel++;
+        passCnt = 0;
     }
 }
 

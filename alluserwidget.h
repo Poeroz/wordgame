@@ -11,7 +11,6 @@
 #include <QWidget>
 #include <QSqlTableModel>
 #include <QAbstractItemView>
-#include "userdb.h"
 #include "playerfilterdialog.h"
 #include "questionerfilterdialog.h"
 

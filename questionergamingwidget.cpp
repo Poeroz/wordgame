@@ -13,13 +13,14 @@ questionerGamingWidget::~questionerGamingWidget() {
 
 void questionerGamingWidget::on_okBtn_clicked() {
     QString newWord = ui->wordLineEdit->text();
-    if (queryWorddb(newWord)) {
+    worddbManager man;
+    if (man.queryWorddb(newWord)) {
         ui->statusLabel->setText(tr("该单词已存在！"));
         ui->wordLineEdit->clear();
         ui->wordLineEdit->setFocus();
     }
     else {
-        addWorddb(newWord);
+        man.addWorddb(newWord);
         ui->statusLabel->setText(tr("添加成功！"));
         ui->wordLineEdit->clear();
         ui->wordLineEdit->setFocus();

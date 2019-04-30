@@ -6,7 +6,7 @@
 #include <QProgressBar>
 #include <QMessageBox>
 #include <QPair>
-#include "worddb.h"
+#include "worddbmanager.h"
 
 namespace Ui {
 class playerGamingWidget;

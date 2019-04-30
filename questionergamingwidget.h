@@ -3,7 +3,7 @@
 
 #include <QMessageBox>
 #include <QWidget>
-#include "worddb.h"
+#include "worddbmanager.h"
 
 namespace Ui {
 class questionerGamingWidget;

@@ -39,8 +39,8 @@ SOURCES += \
     questioner.cpp \
     signupdialog.cpp \
     playerwindow.cpp \
-    userdb.cpp \
-	worddb.cpp
+	userdbmanager.cpp \
+	worddbmanager.cpp
 
 HEADERS += \
 	alluserwidget.h \
@@ -55,8 +55,8 @@ HEADERS += \
     questioner.h \
     signupdialog.h \
     playerwindow.h \
-    userdb.h \
-	worddb.h
+	userdbmanager.h \
+	worddbmanager.h
 
 FORMS += \
 	alluserwidget.ui \

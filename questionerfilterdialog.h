@@ -9,7 +9,7 @@
 #define QUESTIONERFILTERDIALOG_H
 
 #include <QDialog>
-#include "userdb.h"
+#include "userdbmanager.h"
 
 namespace Ui {
 class questionerFilterDialog;
