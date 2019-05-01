@@ -1,3 +1,10 @@
+/**
+ * @file questionerwindow.cpp
+ *
+ * @brief 出题者游戏主窗口。
+ * @author 房庆凯 - 2017211131
+ */
+
 #include "questionerwindow.h"
 #include "ui_questionerwindow.h"
 

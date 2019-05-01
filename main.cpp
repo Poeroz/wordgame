@@ -1,3 +1,10 @@
+/**
+ * @file main.cpp
+ *
+ * @brief 提供程序入口点。
+ * @author 房庆凯 - 2017211131
+ */
+
 #include "mainwindow.h"
 #include <QApplication>
 

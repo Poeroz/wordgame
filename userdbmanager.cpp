@@ -9,8 +9,8 @@ userdbManager::userdbManager() {
 
 void userdbManager::initUserdb() {
     QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE", "userConnect");
-    db.setDatabaseName("user.db");
+    db = QSqlDatabase::addDatabase("QSQLITE", "userConnect");               /* 建立数据库连接 */
+    db.setDatabaseName("user.db");                                          /* 设置数据库名称 */
     if (!db.open()) {
         qDebug() << "not open!";
     }
@@ -107,12 +107,11 @@ int userdbManager::checkUser(QString usr, QString pwd) {
     return NONEXIST;
 }
 
-player userdbManager::getPlayer(QString usr, QString pwd) {
+player userdbManager::getPlayer(QString usr) {
     QSqlQuery query(userdb);
-    QString str = QString("select * from user where username = :usr and password = :pwd");
+    QString str = QString("select * from user where username = :usr");
     query.prepare(str);
     query.bindValue(":usr", usr);
-    query.bindValue(":pwd", pwd);
     if (!query.exec()) {
         qDebug() << "query error";
     }
@@ -130,12 +129,11 @@ player userdbManager::getPlayer(QString usr, QString pwd) {
     }
 }
 
-questioner userdbManager::getQuestioner(QString usr, QString pwd) {
+questioner userdbManager::getQuestioner(QString usr) {
     QSqlQuery query(userdb);
-    QString str = QString("select * from user where username = :usr and password = :pwd");
+    QString str = QString("select * from user where username = :usr");
     query.prepare(str);
     query.bindValue(":usr", usr);
-    query.bindValue(":pwd", pwd);
     if (!query.exec()) {
         qDebug() << "query error";
     }

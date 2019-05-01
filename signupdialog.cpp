@@ -1,3 +1,10 @@
+/**
+ * @file signupdialog.cpp
+ *
+ * @brief 注册对话框。
+ * @author 房庆凯 - 2017211131
+ */
+
 #include "signupdialog.h"
 #include "ui_signupdialog.h"
 

@@ -1,3 +1,10 @@
+/**
+ * @file alluserwidget.cpp
+ *
+ * @brief 显示所有用户信息的窗口。
+ * @author 房庆凯 - 2017211131
+ */
+
 #include "alluserwidget.h"
 #include "ui_alluserwidget.h"
 
@@ -5,7 +12,7 @@ allUserWidget::allUserWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::allUserWidget) {
     ui->setupUi(this);
-    showPlayerTable(QString("role = %1").arg(PLAYER));
+    showPlayerTable(QString("role = %1").arg(PLAYER));                  /* 初始显示所有闯关者 */
 }
 
 allUserWidget::~allUserWidget() {
@@ -21,9 +28,10 @@ void allUserWidget::sortByColumn(int col) {
 }
 
 void allUserWidget::showPlayerTable(QString str) {
-    qDebug() << str;
     userdbManager man;
     QSqlTableModel *pModel = new QSqlTableModel(this, man.getUserdb());
+
+    /* 设置表格样式 */
     pModel->setTable("user");
     pModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
     pModel->setFilter(str);
@@ -38,17 +46,22 @@ void allUserWidget::showPlayerTable(QString str) {
     pModel->setHeaderData(3, Qt::Horizontal, "经验值");
     pModel->sort(0, Qt::AscendingOrder);
 
+    /* 设置表格属性 */
     ui->tableView->setModel(pModel);
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView->setSelectionBehavior(QAbstractItemView::QAbstractItemView::SelectRows);
     ui->tableView->verticalHeader()->hide();
     ui->tableView->horizontalHeader()->setSectionsClickable(true);
+
+    /* 连接信号与槽 */
     connect(ui->tableView->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(sortByColumn(int)));
 }
 
 void allUserWidget::showQuestionerTable(QString str) {
     userdbManager man;
     QSqlTableModel *pModel = new QSqlTableModel(this, man.getUserdb());
+
+    /* 设置表格样式 */
     pModel->setTable("user");
     pModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
     pModel->setFilter(str);
@@ -63,11 +76,14 @@ void allUserWidget::showQuestionerTable(QString str) {
     pModel->setHeaderData(2, Qt::Horizontal, "出题数");
     pModel->sort(0, Qt::AscendingOrder);
 
+    /* 设置表格属性 */
     ui->tableView->setModel(pModel);
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView->setSelectionBehavior(QAbstractItemView::QAbstractItemView::SelectRows);
     ui->tableView->verticalHeader()->hide();
     ui->tableView->horizontalHeader()->setSectionsClickable(true);
+
+    /* 连接信号与槽 */
     connect(ui->tableView->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(sortByColumn(int)));
 }
 
@@ -97,12 +113,12 @@ void allUserWidget::on_filterBtn_clicked() {
     else {
         role = QUESTIONER;
     }
-    if (role == PLAYER) {
+    if (role == PLAYER) {                                               /* 当前选中闯关者按钮 */
         playerFilterDialog *dlg = new playerFilterDialog;
         connect(dlg, SIGNAL(playerSendData(QString)), this, SLOT(playerReceiveData(QString)));
         dlg->exec();
     }
-    else {
+    else {                                                              /* 当前选中出题者按钮 */
         questionerFilterDialog *dlg = new questionerFilterDialog;
         connect(dlg, SIGNAL(questionerSendData(QString)), this, SLOT(questionerReceiveData(QString)));
         dlg->exec();
@@ -119,10 +135,10 @@ void allUserWidget::on_seeAllBtn_clicked() {
     else {
         role = QUESTIONER;
     }
-    if (role == PLAYER) {
+    if (role == PLAYER) {                                               /* 当前选中闯关者按钮 */
         showPlayerTable(QString("role = %1").arg(PLAYER));
     }
-    else {
+    else {                                                              /* 当前选中出题者按钮 */
         showQuestionerTable(QString("role = %1").arg(QUESTIONER));
     }
 }

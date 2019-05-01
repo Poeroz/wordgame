@@ -1,3 +1,10 @@
+/**
+ * @file user.cpp
+ *
+ * @brief 用户类。
+ * @author 房庆凯 - 2017211131
+ */
+
 #include "user.h"
 
 user::user(const QString &_username,

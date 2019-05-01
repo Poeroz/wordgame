@@ -1,3 +1,10 @@
+/**
+ * @file mainwindow.cpp
+ *
+ * @brief 登录窗口。
+ * @author 房庆凯 - 2017211131
+ */
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -27,23 +34,23 @@ void MainWindow::on_signInBtn_clicked() {
         userdbManager man;
         int type = man.checkUser(usr, pwd);
         if (type == PLAYER) {
-            player newUser = man.getPlayer(usr, pwd);
+            player newUser = man.getPlayer(usr);
             playerWindow *newWindow = new playerWindow;
             newWindow->init(newUser);
-            this->hide();                                       /* 隐藏当前窗口 */
-            newWindow->show();                                  /* 显示闯关者游戏窗口 */
+            this->hide();                                                   /* 隐藏当前窗口 */
+            newWindow->show();                                              /* 显示闯关者游戏窗口 */
         }
         else if (type == QUESTIONER) {
-            questioner newUser = man.getQuestioner(usr, pwd);
+            questioner newUser = man.getQuestioner(usr);
             questionerWindow *newWindow = new questionerWindow;
             newWindow->init(newUser);
             this->hide();
             newWindow->show();
         }
-        else {                                                      /* 未找到该账户的记录 */
+        else {                                                              /* 未找到该账户的记录 */
             QMessageBox::warning(this, tr("提示"), tr("用户名或密码错误"), QMessageBox::Ok);
-            ui->pwdLineEdit->clear();                               /* 清空密码栏 */
-            ui->pwdLineEdit->setFocus();                            /* 设置焦点，重新输入密码 */
+            ui->pwdLineEdit->clear();                                       /* 清空密码栏 */
+            ui->pwdLineEdit->setFocus();                                    /* 设置焦点，重新输入密码 */
         }
     }
 }

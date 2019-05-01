@@ -1,3 +1,10 @@
+/**
+ * @file player.cpp
+ *
+ * @brief 闯关者类。
+ * @author 房庆凯 - 2017211131
+ */
+
 #include "player.h"
 
 player::player(const user &base,

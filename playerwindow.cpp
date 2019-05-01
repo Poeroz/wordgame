@@ -1,3 +1,10 @@
+/**
+ * @file playerwindow.cpp
+ *
+ * @brief 闯关者游戏主窗口。
+ * @author 房庆凯 - 2017211131
+ */
+
 #include "playerwindow.h"
 #include "ui_playerwindow.h"
 

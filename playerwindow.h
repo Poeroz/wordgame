@@ -36,7 +36,7 @@ public:
     ~playerWindow();
 
     /**
-     * @brief 对窗口进行初始化。
+     * @brief 对窗口进行初始化，显示当前用户的信息。
      * @param user 当前闯关者的信息。
      */
     void init(player user);
@@ -47,6 +47,9 @@ private slots:
      */
     void on_allUserBtn_clicked();
 
+    /**
+     * @brief 点击开始游戏。
+     */
     void on_startBtn_clicked();
 
 private:

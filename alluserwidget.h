@@ -78,13 +78,13 @@ private:
     Ui::allUserWidget *ui;
 
     /**
-     * @brief 显示所有闯关者信息。
+     * @brief 显示所有符合条件的闯关者信息。
      * @param str 闯关者筛选条件。
      */
     void showPlayerTable(QString str);
 
     /**
-     * @brief 显示所有出题者信息。
+     * @brief 显示所有符合条件的出题者信息。
      * @param str 出题者筛选条件。
      */
     void showQuestionerTable(QString str);
