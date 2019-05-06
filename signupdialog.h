@@ -36,6 +36,9 @@ public:
 private:
     Ui::signUpDialog *ui;
 
+signals:
+    void toSignIn();
+
 private slots:
     /**
      * @brief 点击 OK 时的操作。

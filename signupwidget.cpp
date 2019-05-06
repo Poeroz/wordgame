@@ -1,24 +1,24 @@
 /**
- * @file signupdialog.cpp
+ * @file signupwidget.cpp
  *
- * @brief 注册对话框。
+ * @brief 注册窗口。
  * @author 房庆凯 - 2017211131
  */
 
-#include "signupdialog.h"
-#include "ui_signupdialog.h"
+#include "signupwidget.h"
+#include "ui_signupwidget.h"
 
-signUpDialog::signUpDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::signUpDialog) {
+signUpWidget::signUpWidget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::signupWidget) {
     ui->setupUi(this);
 }
 
-signUpDialog::~signUpDialog() {
+signUpWidget::~signUpWidget() {
     delete ui;
 }
 
-void signUpDialog::on_okBtn_clicked() {
+void signUpWidget::on_okBtn_clicked() {
     QString usr = ui->usrLineEdit->text();
     QString name = ui->nameLineEdit->text();
     QString pwd = ui->pwdLineEdit->text();
@@ -56,9 +56,22 @@ void signUpDialog::on_okBtn_clicked() {
             else {
                 man.addUserdb(usr, name, pwd, role);
                 QMessageBox::warning(this, tr(""), tr("注册成功！"), QMessageBox::Ok);
-                this->accept();
+                emit toSignIn();
             }
         }
     }
 }
 
+void signUpWidget::on_returnBtn_clicked() {
+    emit toSignIn();
+}
+
+void signUpWidget::showAgain() {
+    show();
+    ui->usrLineEdit->clear();
+    ui->pwdLineEdit->clear();
+    ui->nameLineEdit->clear();
+    ui->usrLineEdit->setFocus();
+    ui->playerBtn->setChecked(false);
+    ui->questionerBtn->setChecked(false);
+}

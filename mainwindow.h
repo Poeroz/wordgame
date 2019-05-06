@@ -1,7 +1,7 @@
 /**
  * @file mainwindow.h
  *
- * @brief 登录窗口。
+ * @brief 主窗口。
  * @author 房庆凯 - 2017211131
  */
 
@@ -10,7 +10,8 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
-#include "signupdialog.h"
+#include "signupwidget.h"
+#include "signinwidget.h"
 #include "player.h"
 #include "questioner.h"
 #include "playerwindow.h"
@@ -22,7 +23,7 @@ class MainWindow;
 }
 
 /**
- * @brief 登录窗口。
+ * @brief 主窗口。
  */
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -40,22 +41,24 @@ public:
 
 private slots:
     /**
-     * @brief 点击登录按钮后的操作。
+     * @brief 由登录窗口切换到注册窗口。
      */
-    void on_signInBtn_clicked();
+    void switchToSignUp();
 
     /**
-     * @brief 点击注册按钮后的操作。
+     * @brief 由注册窗口切换到登录窗口。
      */
-    void on_signUpBtn_clicked();
+    void switchToSignIn();
 
     /**
-     * @brief 点击退出按钮后的操作。
+     * @brief 退出程序。
      */
-    void on_quitBtn_clicked();
+    void exitProgram();
 
 private:
     Ui::MainWindow *ui;
+    signUpWidget *signUp;               /**< 注册窗口。 */
+    signInWidget *signIn;               /**< 登录窗口。 */
 };
 
 #endif // MAINWINDOW_H

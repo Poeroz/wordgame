@@ -34,10 +34,11 @@ SOURCES += \
 	questionerfilterdialog.cpp \
 	questionergamingwidget.cpp \
 	questionerwindow.cpp \
+	signinwidget.cpp \
+	signupwidget.cpp \
     user.cpp \
     player.cpp \
     questioner.cpp \
-    signupdialog.cpp \
     playerwindow.cpp \
 	userdbmanager.cpp \
 	worddbmanager.cpp
@@ -50,10 +51,12 @@ HEADERS += \
 	questionerfilterdialog.h \
 	questionergamingwidget.h \
 	questionerwindow.h \
+	signinwidget.h \
+	signupwidget.h \
     user.h \
     player.h \
     questioner.h \
-    signupdialog.h \
+	# signupdialog.h \
     playerwindow.h \
 	userdbmanager.h \
 	worddbmanager.h
@@ -66,10 +69,38 @@ FORMS += \
 	questionerfilterdialog.ui \
 	questionergamingwidget.ui \
 	questionerwindow.ui \
-    signupdialog.ui \
-    playerwindow.ui
+	signinwidget.ui \
+	# signupdialog.ui \
+    playerwindow.ui \
+	signupwidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components/release/ -lcomponents
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components/debug/ -lcomponents
+else:unix: LIBS += -L$$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components/ -lcomponents
+
+INCLUDEPATH += $$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components
+DEPENDPATH += $$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components/release/libcomponents.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components/debug/libcomponents.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components/release/components.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components/debug/components.lib
+else:unix: PRE_TARGETDEPS += $$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components/libcomponents.a
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components/ -lcomponents
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components/ -lcomponentsd
+else:unix: LIBS += -L$$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components/ -lcomponents
+
+INCLUDEPATH += $$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components
+DEPENDPATH += $$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components/libcomponents.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components/libcomponentsd.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components/components.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components/componentsd.lib
+else:unix: PRE_TARGETDEPS += $$PWD/../../../build-qt-material-widgets-Desktop_Qt_5_12_2_clang_64bit-Debug/components/libcomponents.a

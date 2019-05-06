@@ -16,13 +16,16 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>71</x>
-     <y>96</y>
-     <width>233</width>
-     <height>117</height>
+     <x>80</x>
+     <y>80</y>
+     <width>241</width>
+     <height>121</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetFixedSize</enum>
+    </property>
     <item row="2" column="1" colspan="2">
      <widget class="QLineEdit" name="pwdLineEdit">
       <property name="echoMode">
@@ -89,8 +92,8 @@
   <widget class="QPushButton" name="okBtn">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>230</y>
+     <x>240</x>
+     <y>220</y>
      <width>80</width>
      <height>24</height>
     </rect>
