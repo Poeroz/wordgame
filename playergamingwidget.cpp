@@ -66,7 +66,7 @@ void playerGamingWidget::on_okBtn_clicked() {
     }
     else {
         QMessageBox::warning(this, tr("提示"), tr("闯关失败！"), QMessageBox::Ok);
-        this->close();
+        emit gamingToReady();
     }
 }
 

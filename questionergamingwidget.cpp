@@ -35,5 +35,9 @@ void questionerGamingWidget::on_okBtn_clicked() {
 }
 
 void questionerGamingWidget::on_endgameBtn_clicked() {
-     this->close();
+    emit gamingToReady();
+}
+
+void questionerGamingWidget::init() {
+    ui->wordLineEdit->clear();
 }

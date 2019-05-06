@@ -47,6 +47,10 @@ void allUserWidget::showPlayerTable(QString str) {
 
     /* 设置表格属性 */
     ui->tableView->setModel(pModel);
+    ui->tableView->setColumnWidth(0, 90);
+    ui->tableView->setColumnWidth(1, 70);
+    ui->tableView->setColumnWidth(2, 70);
+    ui->tableView->setColumnWidth(3, 70);
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView->setSelectionBehavior(QAbstractItemView::QAbstractItemView::SelectRows);
     ui->tableView->verticalHeader()->hide();
@@ -77,6 +81,9 @@ void allUserWidget::showQuestionerTable(QString str) {
 
     /* 设置表格属性 */
     ui->tableView->setModel(pModel);
+    ui->tableView->setColumnWidth(0, 100);
+    ui->tableView->setColumnWidth(1, 100);
+    ui->tableView->setColumnWidth(2, 100);
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView->setSelectionBehavior(QAbstractItemView::QAbstractItemView::SelectRows);
     ui->tableView->verticalHeader()->hide();

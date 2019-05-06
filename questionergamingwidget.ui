@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>350</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,9 +16,9 @@
   <widget class="QLineEdit" name="wordLineEdit">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>110</y>
-     <width>113</width>
+     <x>115</x>
+     <y>100</y>
+     <width>120</width>
      <height>21</height>
     </rect>
    </property>
@@ -26,9 +26,9 @@
   <widget class="QPushButton" name="okBtn">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>160</y>
-     <width>113</width>
+     <x>115</x>
+     <y>200</y>
+     <width>120</width>
      <height>32</height>
     </rect>
    </property>
@@ -42,22 +42,25 @@
   <widget class="QLabel" name="statusLabel">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>140</y>
-     <width>111</width>
+     <x>115</x>
+     <y>150</y>
+     <width>120</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
   <widget class="QPushButton" name="endgameBtn">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>220</y>
-     <width>113</width>
+     <x>230</x>
+     <y>280</y>
+     <width>91</width>
      <height>32</height>
     </rect>
    </property>

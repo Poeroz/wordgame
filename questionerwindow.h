@@ -12,6 +12,7 @@
 #include "questioner.h"
 #include "userdbmanager.h"
 #include "alluserwidget.h"
+#include "questionerreadywidget.h"
 #include "questionergamingwidget.h"
 
 namespace Ui {
@@ -43,17 +44,30 @@ public:
 
 private slots:
     /**
-     * @brief 点击显示所有用户的信息。
+     * @brief 从准备界面切换到显示所有用户的界面。
      */
-    void on_allUserBtn_clicked();
+    void switchReadyToAllUser();
 
     /**
-     * @brief 点击开始游戏。
+     * @brief 从准备界面进入到游戏界面。
      */
-    void on_startBtn_clicked();
+    void switchReadyToGaming();
+
+    /**
+     * @brief 从显示所有用户的界面切换回准备界面。
+     */
+    void switchAllUserToReady();
+
+    /**
+     * @brief 从游戏界面回到准备界面。
+     */
+    void switchGamingToReady();
 
 private:
     Ui::questionerWindow *ui;
+    questionerReadyWidget *ready;                   /**< 准备界面。 */
+    questionerGamingWidget *gaming;                 /**< 游戏界面。 */
+    allUserWidget *allUser;                         /**< 显示所有用户信息的界面。 */
 };
 
 #endif // QUESTIONERWINDOW_H

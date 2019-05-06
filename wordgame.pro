@@ -34,6 +34,7 @@ SOURCES += \
 	playerreadywidget.cpp \
 	questionerfilterdialog.cpp \
 	questionergamingwidget.cpp \
+	questionerreadywidget.cpp \
 	questionerwindow.cpp \
 	signinwidget.cpp \
 	signupwidget.cpp \
@@ -52,6 +53,7 @@ HEADERS += \
 	playerreadywidget.h \
 	questionerfilterdialog.h \
 	questionergamingwidget.h \
+	questionerreadywidget.h \
 	questionerwindow.h \
 	signinwidget.h \
 	signupwidget.h \
@@ -70,6 +72,7 @@ FORMS += \
 	playerreadywidget.ui \
 	questionerfilterdialog.ui \
 	questionergamingwidget.ui \
+	questionerreadywidget.ui \
 	questionerwindow.ui \
 	signinwidget.ui \
     playerwindow.ui \

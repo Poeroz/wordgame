@@ -1,7 +1,7 @@
 /**
  * @file playerreadywidget.h
  *
- * @brief 闯关者游戏准备界面。
+ * @brief 闯关者准备界面。
  * @author 房庆凯 - 2017211131
  */
 
@@ -16,7 +16,7 @@ class playerReadyWidget;
 }
 
 /**
- * @brief 闯关者游戏准备界面。
+ * @brief 闯关者准备界面。
  */
 class playerReadyWidget : public QWidget {
     Q_OBJECT

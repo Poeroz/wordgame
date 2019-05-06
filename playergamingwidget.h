@@ -65,6 +65,9 @@ private slots:
     void on_exitBtn_clicked();
 
 signals:
+    /**
+     * @brief 从游戏界面回到准备界面的信号。
+     */
     void gamingToReady();
 
 private:

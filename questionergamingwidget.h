@@ -34,6 +34,17 @@ public:
      */
     ~questionerGamingWidget();
 
+    /**
+     * @brief 初始化。
+     */
+    void init();
+
+signals:
+    /**
+     * @brief 从游戏界面回到准备界面的信号。
+     */
+    void gamingToReady();
+
 private slots:
     /**
      * @brief 按下 OK 按钮时的操作。
