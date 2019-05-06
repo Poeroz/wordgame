@@ -35,6 +35,11 @@ public:
      */
     ~allUserWidget();
 
+    /**
+     * @brief 初始化。
+     */
+    void init();
+
 private slots:
     /**
      * @brief 将表格按某一列排序。
@@ -73,6 +78,17 @@ private slots:
      * @brief 点击查看全部按钮后的操作。
      */
     void on_seeAllBtn_clicked();
+
+    /**
+     * @brief 点击返回按钮后的操作。
+     */
+    void on_returnBtn_clicked();
+
+signals:
+    /**
+     * @brief 从显示所有用户的界面切换回准备界面的信号。
+     */
+    void allUserToReady();
 
 private:
     Ui::allUserWidget *ui;

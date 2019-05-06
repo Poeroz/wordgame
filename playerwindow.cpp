@@ -12,6 +12,20 @@ playerWindow::playerWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::playerWindow) {
     ui->setupUi(this);
+
+    /* 初始化三个子窗口，并显示准备窗口 */
+    gaming = new playerGamingWidget(this);
+    ready = new playerReadyWidget(this);
+    allUser = new allUserWidget(this);
+    ready->show();
+    gaming->hide();
+    allUser->hide();
+
+    /* 连接信号和槽 */
+    connect(ready, SIGNAL(readyToAllUser()), this, SLOT(switchReadyToAllUser()));
+    connect(ready, SIGNAL(readyToGaming()), this, SLOT(switchReadyToGaming()));
+    connect(allUser, SIGNAL(allUserToReady()), this, SLOT(switchAllUserToReady()));
+    connect(gaming, SIGNAL(gamingToReady()), this, SLOT(switchGamingToReady()));
 }
 
 playerWindow::~playerWindow() {
@@ -19,18 +33,28 @@ playerWindow::~playerWindow() {
 }
 
 void playerWindow::init(player user) {
-    ui->nicknameShow->setText(user.getNickname());
-    ui->gradeShow->setText(QString::number(user.getGrade()));
-    ui->levelShow->setText(QString::number(user.getLevelCnt()));
-    ui->expShow->setText(QString::number(user.getExperience()));
+    ready->init(user);
 }
 
-void playerWindow::on_allUserBtn_clicked() {
-    allUserWidget *widget = new allUserWidget;
-    widget->show();
+void playerWindow::switchReadyToAllUser() {
+    ready->hide();
+    allUser->show();
+    allUser->init();
 }
 
-void playerWindow::on_startBtn_clicked() {
-    playerGamingWidget *widget = new playerGamingWidget();
-    widget->show();
+void playerWindow::switchReadyToGaming() {
+    ready->hide();
+    gaming->show();
+    gaming->init();
+}
+
+void playerWindow::switchAllUserToReady() {
+    allUser->hide();
+    ready->show();
+}
+
+void playerWindow::switchGamingToReady() {
+    gaming->hide();
+    gaming->stop();
+    ready->show();
 }

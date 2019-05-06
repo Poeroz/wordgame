@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>520</width>
-    <height>533</height>
+    <width>350</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,9 +17,9 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>80</y>
-     <width>431</width>
-     <height>441</height>
+     <y>60</y>
+     <width>270</width>
+     <height>300</height>
     </rect>
    </property>
   </widget>
@@ -55,8 +55,8 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>40</y>
+     <x>110</x>
+     <y>20</y>
      <width>139</width>
      <height>23</height>
     </rect>
@@ -89,6 +89,19 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="returnBtn">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>370</y>
+     <width>61</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>返回</string>
+   </property>
   </widget>
  </widget>
  <resources/>

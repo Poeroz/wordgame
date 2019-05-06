@@ -34,9 +34,9 @@ public:
     ~signUpWidget();
 
     /**
-     * @brief 切换回注册窗口后的初始化。
+     * @brief 初始化。
      */
-    void showAgain();
+    void init();
 
 signals:
     /**

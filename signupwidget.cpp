@@ -66,8 +66,7 @@ void signUpWidget::on_returnBtn_clicked() {
     emit toSignIn();
 }
 
-void signUpWidget::showAgain() {
-    show();
+void signUpWidget::init() {
     ui->usrLineEdit->clear();
     ui->pwdLineEdit->clear();
     ui->nameLineEdit->clear();

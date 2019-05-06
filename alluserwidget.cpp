@@ -12,7 +12,6 @@ allUserWidget::allUserWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::allUserWidget) {
     ui->setupUi(this);
-    showPlayerTable(QString("role = %1").arg(PLAYER));                  /* 初始显示所有闯关者 */
 }
 
 allUserWidget::~allUserWidget() {
@@ -141,4 +140,12 @@ void allUserWidget::on_seeAllBtn_clicked() {
     else {                                                              /* 当前选中出题者按钮 */
         showQuestionerTable(QString("role = %1").arg(QUESTIONER));
     }
+}
+
+void allUserWidget::on_returnBtn_clicked() {
+    emit allUserToReady();
+}
+
+void allUserWidget::init() {
+    showPlayerTable(QString("role = %1").arg(PLAYER));                  /* 初始显示所有闯关者 */
 }

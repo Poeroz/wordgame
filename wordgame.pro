@@ -31,6 +31,7 @@ SOURCES += \
         mainwindow.cpp \
 	playerfilterdialog.cpp \
 	playergamingwidget.cpp \
+	playerreadywidget.cpp \
 	questionerfilterdialog.cpp \
 	questionergamingwidget.cpp \
 	questionerwindow.cpp \
@@ -48,6 +49,7 @@ HEADERS += \
         mainwindow.h \
 	playerfilterdialog.h \
 	playergamingwidget.h \
+	playerreadywidget.h \
 	questionerfilterdialog.h \
 	questionergamingwidget.h \
 	questionerwindow.h \
@@ -56,7 +58,6 @@ HEADERS += \
     user.h \
     player.h \
     questioner.h \
-	# signupdialog.h \
     playerwindow.h \
 	userdbmanager.h \
 	worddbmanager.h
@@ -66,11 +67,11 @@ FORMS += \
         mainwindow.ui \
 	playerfilterdialog.ui \
 	playergamingwidget.ui \
+	playerreadywidget.ui \
 	questionerfilterdialog.ui \
 	questionergamingwidget.ui \
 	questionerwindow.ui \
 	signinwidget.ui \
-	# signupdialog.ui \
     playerwindow.ui \
 	signupwidget.ui
 

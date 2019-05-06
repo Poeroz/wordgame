@@ -74,6 +74,7 @@ void worddbManager::clearWorddb() {
 }
 
 QString worddbManager::getRandWord(int minLen, int maxLen) {
+
     QSqlQuery query(worddb);
     QString str = "select * from word where length >= :min and length <= :max order by random() limit 1";
     query.prepare(str);
@@ -85,6 +86,9 @@ QString worddbManager::getRandWord(int minLen, int maxLen) {
     else {
         if (query.next()) {
             return query.value(TEXT).toString();
+        }
+        else {
+            qDebug() << "no word in database.";
         }
     }
 }

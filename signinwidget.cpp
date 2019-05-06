@@ -60,8 +60,7 @@ void signInWidget::on_exitButton_clicked() {
     emit closeWindow();
 }
 
-void signInWidget::showAgain() {
-    show();
+void signInWidget::init() {
     ui->usrLineEdit->clear();
     ui->pwdLineEdit->clear();
     ui->usrLineEdit->setFocus();

@@ -1,7 +1,7 @@
 /**
  * @file playergamingwidget.cpp
  *
- * @brief 闯关者游戏中界面。
+ * @brief 闯关者游戏界面。
  * @author 房庆凯 - 2017211131
  */
 
@@ -13,22 +13,9 @@ playerGamingWidget::playerGamingWidget(QWidget *parent) :
     ui(new Ui::playerGamingWidget) {
     ui->setupUi(this);
 
-    /* 进度条属性设置 */
-    ui->progressBar->setOrientation(Qt::Horizontal);
-    ui->progressBar->setMinimum(0);
-    ui->progressBar->setMaximum(5);
-    ui->progressBar->setValue(5);
-    ui->progressBar->setTextVisible(false);
-
     /* 定时器初始化以及连接信号与槽 */
     myTimer = new QTimer(this);
     connect(myTimer, SIGNAL(timeout()), this, SLOT(updateProgressBar()));
-
-    restTime = 5;                                               /* 初始倒计时设置为 5 秒 */
-    nowLevel = 1;                                               /* 初始将当前关卡设置为第 1 关 */
-    passCnt = 0;                                                /* 初始将当前轮数设置为 0 */
-
-    showNewWord();                                              /* 显示第一个单词 */
 }
 
 playerGamingWidget::~playerGamingWidget() {
@@ -81,4 +68,27 @@ void playerGamingWidget::on_okBtn_clicked() {
         QMessageBox::warning(this, tr("提示"), tr("闯关失败！"), QMessageBox::Ok);
         this->close();
     }
+}
+
+void playerGamingWidget::on_exitBtn_clicked() {
+    emit gamingToReady();
+}
+
+void playerGamingWidget::init() {
+    /* 进度条属性设置 */
+    ui->progressBar->setOrientation(Qt::Horizontal);
+    ui->progressBar->setMinimum(0);
+    ui->progressBar->setMaximum(5);
+    ui->progressBar->setValue(5);
+    ui->progressBar->setTextVisible(false);
+
+    restTime = 5;                                               /* 初始倒计时设置为 5 秒 */
+    nowLevel = 1;                                               /* 初始将当前关卡设置为第 1 关 */
+    passCnt = 0;                                                /* 初始将当前轮数设置为 0 */
+
+    showNewWord();                                              /* 显示第一个单词 */
+}
+
+void playerGamingWidget::stop() {
+    myTimer->stop();
 }

@@ -37,9 +37,9 @@ public:
     ~signInWidget();
 
     /**
-     * @brief 切换回登录窗口后的初始化。
+     * @brief 初始化。
      */
-    void showAgain();
+    void init();
 
 signals:
     /**
