@@ -30,5 +30,5 @@ void playerReadyWidget::on_allUserBtn_clicked() {
 }
 
 void playerReadyWidget::on_startBtn_clicked() {
-    emit readyToGaming();
+    emit readyToChLevel();
 }

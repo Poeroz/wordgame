@@ -27,10 +27,13 @@ CONFIG += c++11
 
 SOURCES += \
 	alluserwidget.cpp \
+	chooselevelwidget.cpp \
         main.cpp \
         mainwindow.cpp \
+	playerfailedwidget.cpp \
 	playerfilterdialog.cpp \
 	playergamingwidget.cpp \
+	playerpassedwidget.cpp \
 	playerreadywidget.cpp \
 	questionerfilterdialog.cpp \
 	questionergamingwidget.cpp \
@@ -47,9 +50,12 @@ SOURCES += \
 
 HEADERS += \
 	alluserwidget.h \
+	chooselevelwidget.h \
         mainwindow.h \
+	playerfailedwidget.h \
 	playerfilterdialog.h \
 	playergamingwidget.h \
+	playerpassedwidget.h \
 	playerreadywidget.h \
 	questionerfilterdialog.h \
 	questionergamingwidget.h \
@@ -66,9 +72,12 @@ HEADERS += \
 
 FORMS += \
 	alluserwidget.ui \
+	chooselevelwidget.ui \
         mainwindow.ui \
+	playerfailedwidget.ui \
 	playerfilterdialog.ui \
 	playergamingwidget.ui \
+	playerpassedwidget.ui \
 	playerreadywidget.ui \
 	questionerfilterdialog.ui \
 	questionergamingwidget.ui \

@@ -56,9 +56,9 @@ signals:
     void readyToAllUser();
 
     /**
-     * @brief 从准备界面进入到游戏界面的信号。
+     * @brief 从准备界面进入到选择关卡界面的信号。
      */
-    void readyToGaming();
+    void readyToChLevel();
 
 private:
     Ui::playerReadyWidget *ui;

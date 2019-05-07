@@ -41,7 +41,7 @@ public:
     /**
      * @brief 初始化。
      */
-    void init();
+    void init(int levelId = -1);
 
     /**
      * @brief 停止游戏。
@@ -66,9 +66,19 @@ private slots:
 
 signals:
     /**
-     * @brief 从游戏界面回到准备界面的信号。
+     * @brief 从游戏界面回到菜单界面的信号。
      */
-    void gamingToReady();
+    void gamingToChLevel();
+
+    /**
+     * @brief 从游戏界面切换到闯关失败界面的信号。
+     */
+    void gamingToFailed();
+
+    /**
+     * @brief 从游戏界面切换到闯关成功界面的信号。
+     */
+    void gamingToPassed();
 
 private:
     Ui::playerGamingWidget *ui;

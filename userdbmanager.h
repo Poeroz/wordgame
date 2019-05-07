@@ -41,6 +41,8 @@ public:
      */
     static void initUserdb();
 
+    void work(int a, int b);
+
     /**
      * @brief 按照用户名查询数据库中的某个用户。
      * @param usr 用户名。
