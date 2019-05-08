@@ -12,6 +12,10 @@ signInWidget::signInWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::signInWidget) {
     ui->setupUi(this);
+
+    /* 使用正则表达式约束 */
+    ui->usrLineEdit->setValidator(new QRegExpValidator(QRegExp("^[A-Za-z0-9]{1,20}$"), this));
+    ui->pwdLineEdit->setValidator(new QRegExpValidator(QRegExp("^.{1,20}$"), this));
 }
 
 signInWidget::~signInWidget() {
