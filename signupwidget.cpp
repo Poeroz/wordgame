@@ -12,6 +12,11 @@ signUpWidget::signUpWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::signupWidget) {
     ui->setupUi(this);
+
+    /* 使用正则表达式约束 */
+    ui->usrLineEdit->setValidator(new QRegExpValidator(QRegExp("^[A-Za-z0-9]{1,20}$"), this));
+    ui->nameLineEdit->setValidator(new QRegExpValidator(QRegExp("^[A-Za-z0-9\u4e00-\u9fa5]{1,20}$"), this));
+    ui->pwdLineEdit->setValidator(new QRegExpValidator(QRegExp("^.{1,20}$"), this));
 }
 
 signUpWidget::~signUpWidget() {
@@ -35,16 +40,16 @@ void signUpWidget::on_okBtn_clicked() {
         else {
             role = QUESTIONER;
         }
-        if (usr.length() < 6 || usr.length() > 20) {
-            QMessageBox::warning(this, tr("提示"), tr("用户名必须为 6~20 个字符"), QMessageBox::Ok);
+        if (usr.length() < 6) {
+            QMessageBox::warning(this, tr("提示"), tr("用户名长度必须在 6 到 20 之间"), QMessageBox::Ok);
             ui->usrLineEdit->setFocus();
         }
-        else if (name.length() < 6 || name.length() > 20) {
-            QMessageBox::warning(this, tr("提示"), tr("昵称必须为 6~20 个字符"), QMessageBox::Ok);
+        else if (name.length() < 6) {
+            QMessageBox::warning(this, tr("提示"), tr("昵称长度必须在 6 到 20 之间"), QMessageBox::Ok);
             ui->nameLineEdit->setFocus();
         }
-        else if (pwd.length() < 6 || pwd.length() > 20) {
-            QMessageBox::warning(this, tr("提示"), tr("密码必须为 6~20 个字符"), QMessageBox::Ok);
+        else if (pwd.length() < 6) {
+            QMessageBox::warning(this, tr("提示"), tr("密码长度必须在 6 到 20 之间"), QMessageBox::Ok);
             ui->pwdLineEdit->setFocus();
         }
         else {

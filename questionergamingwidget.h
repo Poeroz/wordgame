@@ -10,6 +10,7 @@
 
 #include <QMessageBox>
 #include <QWidget>
+#include <QRegExpValidator>
 #include "worddbmanager.h"
 
 namespace Ui {

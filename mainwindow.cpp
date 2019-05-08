@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow) {
     ui->setupUi(this);
+    this->setFixedSize(350, 250);
 
     /* 初始化用户、单词数据库 */
     userdbManager::initUserdb();

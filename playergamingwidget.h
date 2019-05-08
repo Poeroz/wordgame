@@ -13,6 +13,7 @@
 #include <QProgressBar>
 #include <QMessageBox>
 #include <QPair>
+#include <QRegExpValidator>
 #include "worddbmanager.h"
 
 namespace Ui {

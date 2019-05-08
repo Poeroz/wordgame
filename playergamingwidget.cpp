@@ -16,6 +16,9 @@ playerGamingWidget::playerGamingWidget(QWidget *parent) :
     /* 定时器初始化以及连接信号与槽 */
     myTimer = new QTimer(this);\
     connect(myTimer, SIGNAL(timeout()), this, SLOT(updateProgressBar()));
+
+    /* 使用正则表达式来限制用户只可输入小写字母 */
+    ui->wordLineEdit->setValidator(new QRegExpValidator(QRegExp("^[a-z]{1,20}$"), this));
 }
 
 playerGamingWidget::~playerGamingWidget() {

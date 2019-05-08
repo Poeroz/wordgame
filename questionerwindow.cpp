@@ -12,6 +12,7 @@ questionerWindow::questionerWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::questionerWindow) {
     ui->setupUi(this);
+    this->setFixedSize(350, 400);
 }
 
 questionerWindow::~questionerWindow() {

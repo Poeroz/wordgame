@@ -11,6 +11,7 @@
 #include <QWidget>
 #include <QMessageBox>
 #include "userdbmanager.h"
+#include <QRegExpValidator>
 
 namespace Ui {
 class signupWidget;
