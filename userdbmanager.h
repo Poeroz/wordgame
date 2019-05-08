@@ -92,6 +92,12 @@ public:
     questioner getQuestioner(QString usr);
 
     /**
+     * @brief 更新闯关者信息。
+     * @param 闯关者。
+     */
+    void updatePlayer(const player &newPlayer);
+
+    /**
      * @brief 获取数据库对象的常量引用。
      */
     const QSqlDatabase &getUserdb();

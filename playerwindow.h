@@ -45,6 +45,13 @@ public:
      */
     void init(player user);
 
+signals:
+    /**
+     * @brief 更新闯关者信息。
+     * @param newPlayer 更新后的闯关者。
+     */
+    void updatePlayerInfo(player newPlayer);
+
 private slots:
     /**
      * @brief 从准备界面切换到显示所有用户的界面。
@@ -84,7 +91,7 @@ private slots:
     /**
      * @brief 从游戏界面切换到闯关成功界面。
      */
-    void switchGamingToPassed();
+    void switchGamingToPassed(int currentLevel);
 
     /**
      * @brief 从闯关成功界面切换到游戏界面。
@@ -115,6 +122,7 @@ private:
     chooseLevelWidget *chLevel;                 /**< 选择关卡的界面。 */
     playerPassedWidget *passed;                 /**< 闯关成功的界面。 */
     playerFailedWidget *failed;                 /**< 闯关失败的界面。 */
+    player *currentPlayer;                      /**< 当前闯关者。 */
 };
 
 #endif // PLAYERWINDOW_H

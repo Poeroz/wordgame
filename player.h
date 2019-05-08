@@ -31,13 +31,25 @@ public:
      * @brief 获取已闯关卡数。
      * @return 已闯关卡数。
      */
-    int getLevelCnt();
+    int getLevelCnt() const;
 
     /**
      * @brief 获取经验值。
      * @return 经验值。
      */
-    int getExperience();
+    int getExperience() const;
+
+    /**
+     * @brief 设置已闯关卡数。
+     * @param tmp 已闯关卡数。
+     */
+    void setLevelCnt(int tmp);
+
+    /**
+     * @brief 设置经验值。
+     * @param tmp 经验值。
+     */
+    void setExperience(int tmp);
 
 private:
     int levelCnt;               /**< 已闯关卡数。 */

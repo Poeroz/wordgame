@@ -77,8 +77,9 @@ signals:
 
     /**
      * @brief 从游戏界面切换到闯关成功界面的信号。
+     * @param currentLevel 当前通过关卡数。
      */
-    void gamingToPassed();
+    void gamingToPassed(int currentLevel);
 
 private:
     Ui::playerGamingWidget *ui;

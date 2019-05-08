@@ -59,9 +59,9 @@ void playerGamingWidget::on_okBtn_clicked() {
 
         /* 通过当前关卡，进入下一关 */
         if (passCnt == TOTAL) {
+            emit gamingToPassed(nowLevel);
             nowLevel++;
             passCnt = 0;
-            emit gamingToPassed();
         }
 
         showNewWord();

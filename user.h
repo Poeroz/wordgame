@@ -35,10 +35,22 @@ public:
     QString getNickname();
 
     /**
+     * @brief 获取用户名。
+     * @return 用户名。
+     */
+    QString getUsername() const;
+
+    /**
      * @brief 获取用户等级。
      * @return 用户等级。
      */
-    int getGrade();
+    int getGrade() const;
+
+    /**
+     * @brief 设置用户等级。
+     * @param tmp 用户等级。
+     */
+    void setGrade(int tmp);
 
 private:
     QString username;       /**< 用户名。 */

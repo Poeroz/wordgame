@@ -49,6 +49,12 @@ private slots:
      */
     void on_startBtn_clicked();
 
+    /**
+     * @brief 更新闯关者信息。
+     * @param 当前闯关者信息。
+     */
+    void refreshPlayer(const player &newPlayer);
+
 signals:
     /**
      * @brief 从准备界面切换到显示所有用户的界面的信号。

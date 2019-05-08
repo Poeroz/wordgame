@@ -12,10 +12,19 @@ player::player(const user &base,
                const int &_experience):
     user(base), levelCnt(_levelCnt), experience(_experience) {}
 
-int player::getLevelCnt() {
+int player::getLevelCnt() const {
     return this->levelCnt;
 }
 
-int player::getExperience() {
+int player::getExperience() const {
     return this->experience;
 }
+
+void player::setLevelCnt(int tmp) {
+    this->levelCnt = tmp;
+}
+
+void player::setExperience(int tmp) {
+    this->experience = tmp;
+}
+

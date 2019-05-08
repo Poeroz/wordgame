@@ -11,6 +11,6 @@ questioner::questioner(const user &base,
                        const int &_questionCnt):
     user(base), questionCnt(_questionCnt) {}
 
-int questioner::getQuestionCnt() {
+int questioner::getQuestionCnt() const {
     return this->questionCnt;
 }

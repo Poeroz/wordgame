@@ -32,3 +32,9 @@ void playerReadyWidget::on_allUserBtn_clicked() {
 void playerReadyWidget::on_startBtn_clicked() {
     emit readyToChLevel();
 }
+
+void playerReadyWidget::refreshPlayer(const player &newPlayer) {
+    ui->gradeShow->setText(QString::number(newPlayer.getGrade()));
+    ui->levelShow->setText(QString::number(newPlayer.getLevelCnt()));
+    ui->expShow->setText(QString::number(newPlayer.getExperience()));
+}

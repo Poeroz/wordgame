@@ -17,6 +17,14 @@ QString user::getNickname() {
     return this->nickname;
 }
 
-int user::getGrade() {
+int user::getGrade() const {
     return this->grade;
+}
+
+void user::setGrade(int tmp) {
+    this->grade = tmp;
+}
+
+QString user::getUsername() const {
+    return this->username;
 }

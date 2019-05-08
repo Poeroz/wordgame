@@ -29,7 +29,7 @@ public:
      * @brief 获取出题数目。
      * @return 出题数目。
      */
-    int getQuestionCnt();
+    int getQuestionCnt() const;
 
 private:
     int questionCnt;            /**< 出题数目。 */

@@ -33,13 +33,14 @@ playerWindow::playerWindow(QWidget *parent) :
     connect(allUser, SIGNAL(allUserToReady()), this, SLOT(switchAllUserToReady()));
     connect(gaming, SIGNAL(gamingToChLevel()), this, SLOT(switchGamingToChLevel()));
     connect(gaming, SIGNAL(gamingToFailed()), this, SLOT(switchGamingToFailed()));
-    connect(gaming, SIGNAL(gamingToPassed()), this, SLOT(switchGamingToPassed()));
+    connect(gaming, SIGNAL(gamingToPassed(int)), this, SLOT(switchGamingToPassed(int)));
     connect(chLevel, SIGNAL(chLevelToReady()), this, SLOT(switchChLevelToReady()));
     connect(chLevel, SIGNAL(chLevelToGaming(int)), this, SLOT(switchChLevelToGaming(int)));
     connect(passed, SIGNAL(passedToGaming()), this, SLOT(switchPassedToGaming()));
     connect(passed, SIGNAL(passedToChLevel()), this, SLOT(switchPassedToChLevel()));
     connect(failed, SIGNAL(failedToGaming()), this, SLOT(switchFailedToGaming()));
     connect(failed, SIGNAL(failedToChLevel()), this, SLOT(switchFailedToChLevel()));
+    connect(this, SIGNAL(updatePlayerInfo(player)), ready, SLOT(refreshPlayer(const player&)));
 }
 
 playerWindow::~playerWindow() {
@@ -47,6 +48,7 @@ playerWindow::~playerWindow() {
 }
 
 void playerWindow::init(player user) {
+    currentPlayer = new player(user);
     ready->init(user);
 }
 
@@ -89,10 +91,28 @@ void playerWindow::switchGamingToFailed() {
     failed->show();
 }
 
-void playerWindow::switchGamingToPassed() {
+void playerWindow::switchGamingToPassed(int currentLevel) {
     gaming->hide();
     gaming->stop();
     passed->show();
+
+    /* 根据当前通过关卡，更新已闯关卡数、经验值、等级 */
+    currentPlayer->setLevelCnt(qMax(currentPlayer->getLevelCnt(), currentLevel));
+    int needExp = currentPlayer->getGrade() * 5;
+    int restExp = currentLevel + currentPlayer->getExperience();
+    while (restExp >= needExp) {
+        restExp -= needExp;
+        currentPlayer->setGrade(currentPlayer->getGrade() + 1);
+        needExp = currentPlayer->getGrade() * 5;
+    }
+    currentPlayer->setExperience(restExp);
+
+    /* 更新数据库里的闯关者信息 */
+    userdbManager man;
+    man.updatePlayer(*currentPlayer);
+
+    /* 更新准备界面显示的闯关者信息 */
+    emit updatePlayerInfo(*currentPlayer);
 }
 
 void playerWindow::switchPassedToGaming() {
