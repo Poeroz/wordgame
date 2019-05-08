@@ -18,7 +18,7 @@ chooseLevelWidget::chooseLevelWidget(QWidget *parent) :
     ui->glot->setVerticalSpacing(15);
 
     /* 初始化所有按钮 */
-    for (int i = 0; i < 16; ++i) {
+    for (int i = 0; i < 16; i++) {
         btnlst.push_back(new CustomizedButton);
         btnlst.back()->setSizePolicy(QSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored));
         btnlst.back()->setText(QString().setNum(i + 1));
@@ -40,6 +40,15 @@ int CustomizedButton::getId() {
 
 chooseLevelWidget::~chooseLevelWidget() {
     delete ui;
+}
+
+void chooseLevelWidget::init(int maxLevel) {
+    for (int i = 0; i <= maxLevel; i++) {
+        btnlst[i]->setEnabled(true);
+    }
+    for (int i = maxLevel + 1; i < 16; i++) {
+        btnlst[i]->setEnabled(false);
+    }
 }
 
 void chooseLevelWidget::getBtnId() {

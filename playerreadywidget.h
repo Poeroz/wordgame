@@ -55,6 +55,11 @@ private slots:
      */
     void refreshPlayer(const player &newPlayer);
 
+    /**
+     * @brief 按下退出游戏按钮的操作。
+     */
+    void on_exitBtn_clicked();
+
 signals:
     /**
      * @brief 从准备界面切换到显示所有用户的界面的信号。
@@ -65,6 +70,11 @@ signals:
      * @brief 从准备界面进入到选择关卡界面的信号。
      */
     void readyToChLevel();
+
+    /**
+     * @brief 退出游戏的信号。
+     */
+    void exitGame();
 
 private:
     Ui::playerReadyWidget *ui;

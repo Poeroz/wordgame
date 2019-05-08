@@ -38,3 +38,7 @@ void playerReadyWidget::refreshPlayer(const player &newPlayer) {
     ui->levelShow->setText(QString::number(newPlayer.getLevelCnt()));
     ui->expShow->setText(QString::number(newPlayer.getExperience()));
 }
+
+void playerReadyWidget::on_exitBtn_clicked() {
+    emit exitGame();
+}

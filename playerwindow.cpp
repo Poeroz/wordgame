@@ -12,6 +12,14 @@ playerWindow::playerWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::playerWindow) {
     ui->setupUi(this);
+}
+
+playerWindow::~playerWindow() {
+    delete ui;
+}
+
+void playerWindow::init(player user) {
+    currentPlayer = new player(user);
 
     /* 初始化三个子窗口，并显示准备窗口 */
     gaming = new playerGamingWidget(this);
@@ -21,9 +29,11 @@ playerWindow::playerWindow(QWidget *parent) :
     passed = new playerPassedWidget(this);
     failed = new playerFailedWidget(this);
     ready->show();
+    ready->init(user);
     gaming->hide();
     allUser->hide();
     chLevel->hide();
+    chLevel->init(currentPlayer->getLevelCnt());
     passed->hide();
     failed->hide();
 
@@ -41,15 +51,7 @@ playerWindow::playerWindow(QWidget *parent) :
     connect(failed, SIGNAL(failedToGaming()), this, SLOT(switchFailedToGaming()));
     connect(failed, SIGNAL(failedToChLevel()), this, SLOT(switchFailedToChLevel()));
     connect(this, SIGNAL(updatePlayerInfo(player)), ready, SLOT(refreshPlayer(const player&)));
-}
-
-playerWindow::~playerWindow() {
-    delete ui;
-}
-
-void playerWindow::init(player user) {
-    currentPlayer = new player(user);
-    ready->init(user);
+    connect(ready, SIGNAL(exitGame()), this, SLOT(closeWindow()));
 }
 
 void playerWindow::switchReadyToAllUser() {
@@ -107,6 +109,9 @@ void playerWindow::switchGamingToPassed(int currentLevel) {
     }
     currentPlayer->setExperience(restExp);
 
+    /* 更新选择关卡界面 */
+    chLevel->init(currentPlayer->getLevelCnt());
+
     /* 更新数据库里的闯关者信息 */
     userdbManager man;
     man.updatePlayer(*currentPlayer);
@@ -135,5 +140,9 @@ void playerWindow::switchFailedToGaming() {
 void playerWindow::switchFailedToChLevel() {
     failed->hide();
     chLevel->show();
+}
+
+void playerWindow::closeWindow() {
+    this->close();
 }
 

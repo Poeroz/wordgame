@@ -113,6 +113,10 @@ private slots:
      */
     void switchFailedToChLevel();
 
+    /**
+     * @brief 关闭窗口。
+     */
+    void closeWindow();
 
 private:
     Ui::playerWindow *ui;

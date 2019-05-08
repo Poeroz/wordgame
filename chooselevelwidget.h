@@ -57,6 +57,12 @@ public:
      */
     ~chooseLevelWidget();
 
+    /**
+     * @brief 初始化按钮状态。
+     * @param maxLevel 最大可选关卡数。
+     */
+    void init(int maxLevel);
+
 private:
     QVector<CustomizedButton*> btnlst;      /**< 按钮组。 */
     Ui::chooseLevelWidget *ui;
