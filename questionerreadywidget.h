@@ -49,6 +49,11 @@ signals:
      */
     void readyToGaming();
 
+    /**
+     * @brief 退出游戏的信号。
+     */
+    void exitGame();
+
 private slots:
     /**
      * @brief 点击显示所有用户的信息。
@@ -59,6 +64,17 @@ private slots:
      * @brief 点击开始游戏。
      */
     void on_startBtn_2_clicked();
+
+    /**
+     * @brief 更新出题者信息。
+     * @param newQuestioner 当前出题者信息。
+     */
+    void refreshQuestioner(const questioner &newQuestioner);
+
+    /**
+     * @brief 按下退出游戏按钮的操作。
+     */
+    void on_exitBtn_clicked();
 
 private:
     Ui::questionerReadyWidget *ui;

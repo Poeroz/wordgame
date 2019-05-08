@@ -45,6 +45,11 @@ signals:
      */
     void gamingToReady();
 
+    /**
+     * @brief 成功添加新单词的信号。
+     */
+    void addNewWord();
+
 private slots:
     /**
      * @brief 按下 OK 按钮时的操作。

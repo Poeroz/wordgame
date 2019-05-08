@@ -22,9 +22,9 @@ void userdbManager::initUserdb() {
                    "password varchar(20), "                                 /* 密码 */
                    "role bool, "                                            /* 角色 */
                    "grade int, "                                            /* 等级 */
-                   "levelCnt int, "                                          /* 已闯关卡数 */
-                   "experience int, "                                        /* 经验值 */
-                   "questionCnt int)");
+                   "levelCnt int, "                                         /* 已闯关卡数 */
+                   "experience int, "                                       /* 经验值 */
+                   "questionCnt int)");                                     /* 出题数 */
     }
 }
 
@@ -160,6 +160,20 @@ void userdbManager::updatePlayer(const player &newPlayer) {
     query.bindValue(":level", newPlayer.getLevelCnt());
     query.bindValue(":exp", newPlayer.getExperience());
     query.bindValue(":usr", newPlayer.getUsername());
+    if (!query.exec()) {
+        qDebug() << "update error";
+    }
+}
+
+void userdbManager::updateQuestioner(const questioner &newQuestioner) {
+    QSqlQuery query(userdb);
+    QString str = QString("update user set grade = :grade, "
+                          "questionCnt = :question "
+                          "where username = :usr");
+    query.prepare(str);
+    query.bindValue(":grade", newQuestioner.getGrade());
+    query.bindValue(":question", newQuestioner.getQuestionCnt());
+    query.bindValue(":usr", newQuestioner.getUsername());
     if (!query.exec()) {
         qDebug() << "update error";
     }

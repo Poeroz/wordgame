@@ -31,6 +31,7 @@ void questionerGamingWidget::on_okBtn_clicked() {
         ui->statusLabel->setText(tr("添加成功！"));
         ui->wordLineEdit->clear();
         ui->wordLineEdit->setFocus();
+        emit addNewWord();
     }
 }
 

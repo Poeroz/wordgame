@@ -42,6 +42,13 @@ public:
      */
     void init(questioner user);
 
+signals:
+    /**
+     * @brief 更新出题者信息的信号。
+     * @param newQuestioner 当前出题者。
+     */
+    void updateQuestionerInfo(const questioner &newQuestioner);
+
 private slots:
     /**
      * @brief 从准备界面切换到显示所有用户的界面。
@@ -63,11 +70,22 @@ private slots:
      */
     void switchGamingToReady();
 
+    /**
+     * @brief 更新出题者信息。
+     */
+    void updateQuestioner();
+
+    /**
+     * @brief 关闭出题者窗口。
+     */
+    void closeWindow();
+
 private:
     Ui::questionerWindow *ui;
     questionerReadyWidget *ready;                   /**< 准备界面。 */
     questionerGamingWidget *gaming;                 /**< 游戏界面。 */
     allUserWidget *allUser;                         /**< 显示所有用户信息的界面。 */
+    questioner *currentQuestioner;                  /**< 当前出题者。 */
 };
 
 #endif // QUESTIONERWINDOW_H

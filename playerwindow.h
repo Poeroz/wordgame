@@ -50,7 +50,7 @@ signals:
      * @brief 更新闯关者信息。
      * @param newPlayer 更新后的闯关者。
      */
-    void updatePlayerInfo(player newPlayer);
+    void updatePlayerInfo(const player &newPlayer);
 
 private slots:
     /**

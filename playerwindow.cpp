@@ -50,7 +50,7 @@ void playerWindow::init(player user) {
     connect(passed, SIGNAL(passedToChLevel()), this, SLOT(switchPassedToChLevel()));
     connect(failed, SIGNAL(failedToGaming()), this, SLOT(switchFailedToGaming()));
     connect(failed, SIGNAL(failedToChLevel()), this, SLOT(switchFailedToChLevel()));
-    connect(this, SIGNAL(updatePlayerInfo(player)), ready, SLOT(refreshPlayer(const player&)));
+    connect(this, SIGNAL(updatePlayerInfo(const player&)), ready, SLOT(refreshPlayer(const player&)));
     connect(ready, SIGNAL(exitGame()), this, SLOT(closeWindow()));
 }
 

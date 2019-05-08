@@ -31,6 +31,12 @@ public:
      */
     int getQuestionCnt() const;
 
+    /**
+     * @brief 设置出题数目。
+     * @param tmp 出题数目。
+     */
+    void setQuestionCnt(int tmp);
+
 private:
     int questionCnt;            /**< 出题数目。 */
 };

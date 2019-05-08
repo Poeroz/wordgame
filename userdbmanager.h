@@ -98,6 +98,12 @@ public:
     void updatePlayer(const player &newPlayer);
 
     /**
+     * @brief 更新出题者信息。
+     * @param 出题者。
+     */
+    void updateQuestioner(const questioner &newQuestioner);
+
+    /**
      * @brief 获取数据库对象的常量引用。
      */
     const QSqlDatabase &getUserdb();

@@ -24,3 +24,12 @@ void questionerReadyWidget::on_allUserBtn_2_clicked() {
 void questionerReadyWidget::on_startBtn_2_clicked() {
     emit readyToGaming();
 }
+
+void questionerReadyWidget::refreshQuestioner(const questioner &newQuestioner) {
+    ui->gradeShow_2->setText(QString::number(newQuestioner.getGrade()));
+    ui->questionCntShow->setText(QString::number(newQuestioner.getQuestionCnt()));
+}
+
+void questionerReadyWidget::on_exitBtn_clicked() {
+    emit exitGame();
+}

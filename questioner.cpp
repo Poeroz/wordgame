@@ -14,3 +14,7 @@ questioner::questioner(const user &base,
 int questioner::getQuestionCnt() const {
     return this->questionCnt;
 }
+
+void questioner::setQuestionCnt(int tmp) {
+    this->questionCnt = tmp;
+}
