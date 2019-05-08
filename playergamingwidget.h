@@ -39,7 +39,7 @@ public:
     ~playerGamingWidget();
 
     /**
-     * @brief 初始化。
+     * @brief 初始化，默认值为 -1，表示不对关卡进行更改。
      */
     void init(int levelId = -1);
 

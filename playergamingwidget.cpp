@@ -14,7 +14,7 @@ playerGamingWidget::playerGamingWidget(QWidget *parent) :
     ui->setupUi(this);
 
     /* 定时器初始化以及连接信号与槽 */
-    myTimer = new QTimer(this);
+    myTimer = new QTimer(this);\
     connect(myTimer, SIGNAL(timeout()), this, SLOT(updateProgressBar()));
 }
 

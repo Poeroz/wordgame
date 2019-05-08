@@ -107,7 +107,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>退出游戏</string>
+    <string>返回菜单</string>
    </property>
   </widget>
   <widget class="QPushButton" name="okBtn">

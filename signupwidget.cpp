@@ -71,6 +71,8 @@ void signUpWidget::init() {
     ui->pwdLineEdit->clear();
     ui->nameLineEdit->clear();
     ui->usrLineEdit->setFocus();
+    ui->buttonGroup->setExclusive(false);
     ui->playerBtn->setChecked(false);
     ui->questionerBtn->setChecked(false);
+    ui->buttonGroup->setExclusive(true);
 }

@@ -1,15 +1,20 @@
+/**
+ * @file playerpassedwidget.cpp
+ *
+ * @brief 闯关成功的界面。
+ * @author 房庆凯 - 2017211131
+ */
+
 #include "playerpassedwidget.h"
 #include "ui_playerpassedwidget.h"
 
 playerPassedWidget::playerPassedWidget(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::playerPassedWidget)
-{
+    ui(new Ui::playerPassedWidget) {
     ui->setupUi(this);
 }
 
-playerPassedWidget::~playerPassedWidget()
-{
+playerPassedWidget::~playerPassedWidget() {
     delete ui;
 }
 

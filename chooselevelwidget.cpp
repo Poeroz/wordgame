@@ -1,3 +1,10 @@
+/**
+ * @file chooselevelwidget.cpp
+ *
+ * @brief 游戏菜单（选择关卡）界面。
+ * @author 房庆凯 - 2017211131
+ */
+
 #include "chooselevelwidget.h"
 #include "ui_chooselevelwidget.h"
 
@@ -5,16 +12,30 @@ chooseLevelWidget::chooseLevelWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::chooseLevelWidget) {
     ui->setupUi(this);
+
+    /* 设置按钮的间距 */
     ui->glot->setSpacing(10);
     ui->glot->setVerticalSpacing(15);
+
+    /* 初始化所有按钮 */
     for (int i = 0; i < 16; ++i) {
         btnlst.push_back(new CustomizedButton);
         btnlst.back()->setSizePolicy(QSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored));
         btnlst.back()->setText(QString().setNum(i + 1));
-        btnlst.back()->id = i + 1;
-        connect(btnlst.back(), SIGNAL(clicked()), this, SLOT(getBtnId()));
+        btnlst.back()->setId(i + 1);
+        connect(btnlst.back(), SIGNAL(clicked()), this, SLOT(getBtnId()));          /* 连接信号和槽 */
         ui->glot->addWidget(btnlst.back(), i >> 2, i & 3);
     }
+}
+
+CustomizedButton::CustomizedButton() : QPushButton () {}
+
+void CustomizedButton::setId(int _id) {
+    this->id = _id;
+}
+
+int CustomizedButton::getId() {
+    return this->id;
 }
 
 chooseLevelWidget::~chooseLevelWidget() {
@@ -23,10 +44,8 @@ chooseLevelWidget::~chooseLevelWidget() {
 
 void chooseLevelWidget::getBtnId() {
     CustomizedButton *Btn=qobject_cast<CustomizedButton*>(sender());
-    emit chLevelToGaming(Btn->id);
+    emit chLevelToGaming(Btn->getId());
 }
-
-CustomizedButton::CustomizedButton() : QPushButton () {}
 
 void chooseLevelWidget::on_pushButton_clicked() {
     emit chLevelToReady();
