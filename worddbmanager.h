@@ -12,6 +12,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
+#include <QDir>
 
 /**
  * @brief 单词数据库内各属性的枚举类型。

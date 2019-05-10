@@ -12,7 +12,8 @@ worddbManager::worddbManager() {
 void worddbManager::initWorddb() {
     QSqlDatabase db;
     db = QSqlDatabase::addDatabase("QSQLITE", "wordConnect");
-    db.setDatabaseName("word.db");
+    QString dir = QDir::currentPath() + QDir::separator() + QString("word.db");
+    db.setDatabaseName(dir);
     if (!db.open()) {
         qDebug() << "not open!";
     }

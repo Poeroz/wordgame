@@ -9,10 +9,11 @@ userdbManager::userdbManager() {
 
 void userdbManager::initUserdb() {
     QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE", "userConnect");               /* 建立数据库连接 */
-    db.setDatabaseName("user.db");                                          /* 设置数据库名称 */
+    db = QSqlDatabase::addDatabase("QSQLITE", "userConnect");               /* 建立数据库连接 */     
+    QString dir = QDir::currentPath() + QDir::separator() + QString("user.db");
+    db.setDatabaseName(dir);                                                /* 设置数据库名称 */
     if (!db.open()) {
-        qDebug() << "not open!";
+        qDebug() << db.lastError();
     }
     else {
         QSqlQuery query(db);

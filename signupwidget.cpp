@@ -66,7 +66,7 @@ void signUpWidget::on_okBtn_clicked() {
             }
             else {
                 man.addUserdb(usr, name, pwd, role);
-                QMessageBox::warning(this, tr(""), tr("注册成功！"), QMessageBox::Ok);
+                QMessageBox::information(this, tr(""), tr("注册成功！"), QMessageBox::Ok);
                 emit toSignIn();
             }
         }
