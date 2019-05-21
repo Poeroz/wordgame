@@ -44,7 +44,7 @@ void playerWindow::init(player user) {
     connect(allUser, SIGNAL(allUserToReady()), this, SLOT(switchAllUserToReady()));
     connect(gaming, SIGNAL(gamingToChLevel()), this, SLOT(switchGamingToChLevel()));
     connect(gaming, SIGNAL(gamingToFailed()), this, SLOT(switchGamingToFailed()));
-    connect(gaming, SIGNAL(gamingToPassed(int)), this, SLOT(switchGamingToPassed(int)));
+    connect(gaming, SIGNAL(gamingToPassed(int, int)), this, SLOT(switchGamingToPassed(int, int)));
     connect(chLevel, SIGNAL(chLevelToReady()), this, SLOT(switchChLevelToReady()));
     connect(chLevel, SIGNAL(chLevelToGaming(int)), this, SLOT(switchChLevelToGaming(int)));
     connect(passed, SIGNAL(passedToGaming()), this, SLOT(switchPassedToGaming()));
@@ -94,7 +94,7 @@ void playerWindow::switchGamingToFailed() {
     failed->show();
 }
 
-void playerWindow::switchGamingToPassed(int currentLevel) {
+void playerWindow::switchGamingToPassed(int currentLevel, int plusExp) {
     gaming->hide();
     gaming->stop();
     passed->show();
@@ -102,7 +102,7 @@ void playerWindow::switchGamingToPassed(int currentLevel) {
     /* 根据当前通过关卡，更新已闯关卡数、经验值、等级 */
     currentPlayer->setLevelCnt(qMax(currentPlayer->getLevelCnt(), currentLevel));
     int needExp = currentPlayer->getGrade() * 5;
-    int restExp = currentLevel + currentPlayer->getExperience();
+    int restExp = plusExp + currentPlayer->getExperience();
     while (restExp >= needExp) {
         restExp -= needExp;
         currentPlayer->setGrade(currentPlayer->getGrade() + 1);

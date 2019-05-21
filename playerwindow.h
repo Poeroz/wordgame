@@ -91,7 +91,7 @@ private slots:
     /**
      * @brief 从游戏界面切换到闯关成功界面。
      */
-    void switchGamingToPassed(int currentLevel);
+    void switchGamingToPassed(int currentLevel, int plusExp);
 
     /**
      * @brief 从闯关成功界面切换到游戏界面。

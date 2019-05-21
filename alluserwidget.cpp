@@ -20,8 +20,8 @@ allUserWidget::~allUserWidget() {
 
 void allUserWidget::sortByColumn(int col) {
     QSqlTableModel *pMode = dynamic_cast<QSqlTableModel *>(ui->tableView->model());
-    bool ascending = (ui->tableView->horizontalHeader()->sortIndicatorSection()==col
-                      && ui->tableView->horizontalHeader()->sortIndicatorOrder()==Qt::DescendingOrder);
+    bool ascending = (ui->tableView->horizontalHeader()->sortIndicatorSection() == col
+                      && ui->tableView->horizontalHeader()->sortIndicatorOrder() == Qt::DescendingOrder);
     Qt::SortOrder order = ascending ? Qt::AscendingOrder : Qt::DescendingOrder;
     pMode->sort(col, order);
 }
@@ -55,6 +55,8 @@ void allUserWidget::showPlayerTable(QString str) {
     ui->tableView->setSelectionBehavior(QAbstractItemView::QAbstractItemView::SelectRows);
     ui->tableView->verticalHeader()->hide();
     ui->tableView->horizontalHeader()->setSectionsClickable(true);
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableView->horizontalHeader()->setStretchLastSection(true);
 
     /* 连接信号与槽 */
     connect(ui->tableView->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(sortByColumn(int)));
