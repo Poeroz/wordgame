@@ -156,5 +156,9 @@ void allUserWidget::on_returnBtn_clicked() {
 }
 
 void allUserWidget::init() {
+    ui->buttonGroup->setExclusive(false);
+    ui->playerBtn->setChecked(true);
+    ui->questionerBtn->setChecked(false);
+    ui->buttonGroup->setExclusive(true);
     showPlayerTable(QString("role = %1").arg(PLAYER));                  /* 初始显示所有闯关者 */
 }

@@ -77,8 +77,8 @@ questioner userdbManager::getQuestioner(QString usr) {
 
 void userdbManager::updatePlayer(const player &newPlayer) {
     QJsonObject json;
-    json["type"] = "updatePlayer";
     newPlayer.writeJson(json);
+    json["type"] = "updatePlayer";
     QJsonObject rec = tcpMan.sendData(json);
     if (!rec.contains(STATUS) || rec[STATUS].toString() == FAILED) {
         qDebug() << "failed";
@@ -87,8 +87,8 @@ void userdbManager::updatePlayer(const player &newPlayer) {
 
 void userdbManager::updateQuestioner(const questioner &newQuestioner) {
     QJsonObject json;
-    json["type"] = "updateQuestioner";
     newQuestioner.writeJson(json);
+    json["type"] = "updateQuestioner";
     QJsonObject rec = tcpMan.sendData(json);
     if (!rec.contains(STATUS) || rec[STATUS].toString() == FAILED) {
         qDebug() << "failed";

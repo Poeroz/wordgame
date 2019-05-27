@@ -21,7 +21,6 @@ void questioner::setQuestionCnt(int tmp) {
 
 void questioner::writeJson(QJsonObject &json) const {
     user::writeJson(json);
-    json["type"] = QUESTIONER;
     json["cnt"] = questionCnt;
 }
 

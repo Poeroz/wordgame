@@ -30,7 +30,6 @@ void player::setExperience(int tmp) {
 
 void player::writeJson(QJsonObject &json) const {
     user::writeJson(json);
-    json["type"] = PLAYER;
     json["level"] = levelCnt;
     json["exp"] = experience;
 }

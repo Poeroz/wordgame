@@ -73,8 +73,9 @@ void playerGamingWidget::on_okBtn_clicked() {
             nowLevel++;
             passCnt = 0;
         }
-
-        showNewWord();
+        else {
+            showNewWord();
+        }
     }
     else {
         QMessageBox::warning(this, tr("提示"), tr("闯关失败！"), QMessageBox::Ok);
