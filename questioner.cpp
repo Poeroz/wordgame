@@ -18,3 +18,16 @@ int questioner::getQuestionCnt() const {
 void questioner::setQuestionCnt(int tmp) {
     this->questionCnt = tmp;
 }
+
+void questioner::writeJson(QJsonObject &json) const {
+    user::writeJson(json);
+    json["type"] = QUESTIONER;
+    json["cnt"] = questionCnt;
+}
+
+void questioner::readJson(const QJsonObject &json) {
+    user::readJson(json);
+    if (json.contains("cnt")) {
+        questionCnt = json["cnt"].toInt();
+    }
+}

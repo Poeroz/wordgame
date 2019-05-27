@@ -37,6 +37,18 @@ public:
      */
     void setQuestionCnt(int tmp);
 
+    /**
+     * @brief 向 json 中写入信息
+     */
+    void writeJson(QJsonObject &json) const;
+
+    /**
+     * @brief 从 json 中读出信息
+     */
+    void readJson(const QJsonObject &json);
+
+
+
 private:
     int questionCnt;            /**< 出题数目。 */
 };

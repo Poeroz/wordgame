@@ -6,6 +6,7 @@
  */
 
 #include "mainwindow.h"
+#include "tcpmanager.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

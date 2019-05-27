@@ -9,6 +9,11 @@
 #define USER_H
 
 #include <QString>
+#include <QJsonObject>
+
+enum USERTYPE {
+    PLAYER, QUESTIONER
+};
 
 /**
  * @brief 用户类。
@@ -51,6 +56,16 @@ public:
      * @param tmp 用户等级。
      */
     void setGrade(int tmp);
+
+    /**
+     * @brief 从 json 中读出信息
+     */
+    void readJson(const QJsonObject &json);
+
+    /**
+     * @brief 向 json 中写入信息
+     */
+    void writeJson(QJsonObject &json) const;
 
 private:
     QString username;       /**< 用户名。 */

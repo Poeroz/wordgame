@@ -1,15 +1,15 @@
 #include "userdbmanager.h"
 
 userdbManager::userdbManager() {
-    userdb = QSqlDatabase::database("userConnect");
-    if (!userdb.open()) {
-        qDebug() << "not open!";
-    }
+//    userdb = QSqlDatabase::database("userConnect");
+//    if (!userdb.open()) {
+//        qDebug() << "not open!";
+//    }
 }
 
 void userdbManager::initUserdb() {
     QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE", "userConnect");               /* 建立数据库连接 */     
+    db = QSqlDatabase::addDatabase("QSQLITE", "userConnect");               /* 建立数据库连接 */
     QString dir = QDir::currentPath() + QDir::separator() + QString("user.db");
     db.setDatabaseName(dir);                                                /* 设置数据库名称 */
     if (!db.open()) {
@@ -30,22 +30,21 @@ void userdbManager::initUserdb() {
 }
 
 bool userdbManager::queryUserdb(QString usr) {
-    QSqlQuery query(userdb);
-    QString str = "select * from user where username = :usr";
-    query.prepare(str);
-    query.bindValue(":usr", usr);
-    if (!query.exec()) {
-        qDebug() << "query error";
+    QJsonObject json;
+    json["type"] = "queryUser";
+    json["usr"] = usr;
+    QJsonObject rec = tcpMan.sendData(json);
+    if (rec[STATUS].toString() == FAILED) {
+        qDebug() << "failed";
     }
     else {
-        if (query.next()) {
+        if (rec["exist"].toBool() == true) {
             return true;
         }
         else {
             return false;
         }
     }
-    return false;
 }
 
 void userdbManager::printUserdb() {
@@ -70,113 +69,79 @@ void userdbManager::clearUserdb() {
 }
 
 void userdbManager::addUserdb(QString usr, QString name, QString pwd, bool role) {
-    QSqlQuery query(userdb);
-    /* 向数据库中插入新用户的信息 */
-    QString str = "insert into user values(:usr, :name, :pwd, :role, 0, 0, 0, 0)";
-    query.prepare(str);
-    query.bindValue(":usr", usr);
-    query.bindValue(":name", name);
-    query.bindValue(":pwd", pwd);
-    query.bindValue(":role", role);
-    if (!query.exec()) {
-        qDebug() << "Error here:" << query.lastError();
+    QJsonObject json;
+    json["type"] = "addUser";
+    json["usr"] = usr;
+    json["name"] = name;
+    json["pwd"] = pwd;
+    json["role"] = role;
+    QJsonObject rec = tcpMan.sendData(json);
+    if (!rec.contains(STATUS) || rec[STATUS].toString() == FAILED) {
+        qDebug() << "failed";
     }
 }
 
 int userdbManager::checkUser(QString usr, QString pwd) {
-    QSqlQuery query(userdb);
-    QString str = QString("select * from user where username = :usr and password = :pwd");
-    query.prepare(str);
-    query.bindValue(":usr", usr);
-    query.bindValue(":pwd", pwd);
-    if (!query.exec()) {
-        qDebug() << "query error";
+    QJsonObject json;
+    json["type"] = "checkUser";
+    json["usr"] = usr;
+    json["pwd"] = pwd;
+    QJsonObject rec = tcpMan.sendData(json);
+    if (!rec.contains(STATUS) || rec[STATUS].toString() == FAILED) {
+        qDebug() << "failed";
     }
     else {
-        if (query.next()) {
-            if (query.value(ROLE) == PLAYER) {
-                return PLAYER;
-            }
-            else {
-                return QUESTIONER;
-            }
-        }
-        else {
-            return NONEXIST;
-        }
+        return rec["role"].toInt();
     }
-    return NONEXIST;
 }
 
 player userdbManager::getPlayer(QString usr) {
-    QSqlQuery query(userdb);
-    QString str = QString("select * from user where username = :usr");
-    query.prepare(str);
-    query.bindValue(":usr", usr);
-    if (!query.exec()) {
-        qDebug() << "query error";
+    QJsonObject json;
+    json["type"] = "getPlayer";
+    json["usr"] = usr;
+    QJsonObject rec = tcpMan.sendData(json);
+    if (!rec.contains(STATUS) || rec[STATUS].toString() == FAILED) {
+        qDebug() << "failed";
     }
     else {
-        if (query.next()) {
-            user base = user(query.value(USERNAME).toString(),
-                             query.value(NICKNAME).toString(),
-                             query.value(PASSWORD).toString(),
-                             query.value(GRADE).toInt());
-            player newUser = player(base,
-                                    query.value(LEVELCNT).toInt(),
-                                    query.value(EXPERIENCE).toInt());
-            return newUser;
-        }
+        player tmp;
+        tmp.readJson(rec);
+        return tmp;
     }
 }
 
 questioner userdbManager::getQuestioner(QString usr) {
-    QSqlQuery query(userdb);
-    QString str = QString("select * from user where username = :usr");
-    query.prepare(str);
-    query.bindValue(":usr", usr);
-    if (!query.exec()) {
-        qDebug() << "query error";
+    QJsonObject json;
+    json["type"] = "getQuestioner";
+    json["usr"] = usr;
+    QJsonObject rec = tcpMan.sendData(json);
+    if (!rec.contains(STATUS) || rec[STATUS].toString() == FAILED) {
+        qDebug() << "failed";
     }
     else {
-        if (query.next()) {
-            user base = user(query.value(USERNAME).toString(),
-                             query.value(NICKNAME).toString(),
-                             query.value(PASSWORD).toString(),
-                             query.value(GRADE).toInt());
-            questioner newUser = questioner(base, query.value(QUESTIONCNT).toInt());
-            return newUser;
-        }
+        questioner tmp;
+        tmp.readJson(rec);
+        return tmp;
     }
 }
 
 void userdbManager::updatePlayer(const player &newPlayer) {
-    QSqlQuery query(userdb);
-    QString str = QString("update user set grade = :grade, "
-                          "levelCnt = :level, "
-                          "experience = :exp "
-                          "where username = :usr");
-    query.prepare(str);
-    query.bindValue(":grade", newPlayer.getGrade());
-    query.bindValue(":level", newPlayer.getLevelCnt());
-    query.bindValue(":exp", newPlayer.getExperience());
-    query.bindValue(":usr", newPlayer.getUsername());
-    if (!query.exec()) {
-        qDebug() << "update error";
+    QJsonObject json;
+    json["type"] = "updatePlayer";
+    newPlayer.writeJson(json);
+    QJsonObject rec = tcpMan.sendData(json);
+    if (!rec.contains(STATUS) || rec[STATUS].toString() == FAILED) {
+        qDebug() << "failed";
     }
 }
 
 void userdbManager::updateQuestioner(const questioner &newQuestioner) {
-    QSqlQuery query(userdb);
-    QString str = QString("update user set grade = :grade, "
-                          "questionCnt = :question "
-                          "where username = :usr");
-    query.prepare(str);
-    query.bindValue(":grade", newQuestioner.getGrade());
-    query.bindValue(":question", newQuestioner.getQuestionCnt());
-    query.bindValue(":usr", newQuestioner.getUsername());
-    if (!query.exec()) {
-        qDebug() << "update error";
+    QJsonObject json;
+    json["type"] = "updateQuestioner";
+    newQuestioner.writeJson(json);
+    QJsonObject rec = tcpMan.sendData(json);
+    if (!rec.contains(STATUS) || rec[STATUS].toString() == FAILED) {
+        qDebug() << "failed";
     }
 }
 

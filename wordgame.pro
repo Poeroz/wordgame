@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
-QT       += sql
+QT       += sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -41,6 +41,7 @@ SOURCES += \
 	questionerwindow.cpp \
 	signinwidget.cpp \
 	signupwidget.cpp \
+	tcpmanager.cpp \
     user.cpp \
     player.cpp \
     questioner.cpp \
@@ -63,6 +64,7 @@ HEADERS += \
 	questionerwindow.h \
 	signinwidget.h \
 	signupwidget.h \
+	tcpmanager.h \
     user.h \
     player.h \
     questioner.h \

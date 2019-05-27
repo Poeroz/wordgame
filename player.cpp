@@ -28,3 +28,20 @@ void player::setExperience(int tmp) {
     this->experience = tmp;
 }
 
+void player::writeJson(QJsonObject &json) const {
+    user::writeJson(json);
+    json["type"] = PLAYER;
+    json["level"] = levelCnt;
+    json["exp"] = experience;
+}
+
+void player::readJson(const QJsonObject &json) {
+    user::readJson(json);
+    if (json.contains("level")) {
+        levelCnt = json["level"].toInt();
+    }
+    if (json.contains("exp")) {
+        experience = json["exp"].toInt();
+    }
+}
+

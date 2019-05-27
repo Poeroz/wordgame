@@ -15,6 +15,7 @@
 #include <QDir>
 #include "player.h"
 #include "questioner.h"
+#include "tcpmanager.h"
 
 #define NONEXIST -1                 /**< 数据库中不存在。 */
 #define PLAYER 0                    /**< 闯关者。 */

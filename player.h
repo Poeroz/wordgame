@@ -51,6 +51,16 @@ public:
      */
     void setExperience(int tmp);
 
+    /**
+     * @brief 向 json 中写入信息
+     */
+    void writeJson(QJsonObject &json) const;
+
+    /**
+     * @brief 从 json 中读出信息
+     */
+    void readJson(const QJsonObject &json);
+
 private:
     int levelCnt;               /**< 已闯关卡数。 */
     int experience;             /**< 经验值。 */

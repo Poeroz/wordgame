@@ -25,6 +25,28 @@ void user::setGrade(int tmp) {
     this->grade = tmp;
 }
 
+void user::readJson(const QJsonObject &json) {
+    if (json.contains("usr")) {
+        username = json["usr"].toString();
+    }
+    if (json.contains("pwd")) {
+        password = json["pwd"].toString();
+    }
+    if (json.contains("name")) {
+        nickname = json["name"].toString();
+    }
+    if (json.contains("grade")) {
+        grade = json["grade"].toInt();
+    }
+}
+
+void user::writeJson(QJsonObject &json) const {
+    json["usr"] = username;
+    json["pwd"] = password;
+    json["name"] = nickname;
+    json["grade"] = grade;
+}
+
 QString user::getUsername() const {
     return this->username;
 }
