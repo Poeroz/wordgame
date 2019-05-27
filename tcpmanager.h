@@ -18,10 +18,6 @@ enum enumStatus {
     FAILED, SUCCESS
 };
 
-enum enumACK {
-    NAK, ACK
-};
-
 class tcpManager : public QObject {
     Q_OBJECT
 public:

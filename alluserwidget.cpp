@@ -27,8 +27,8 @@ void allUserWidget::sortByColumn(int col) {
 }
 
 void allUserWidget::showPlayerTable(QString str) {
-    userdbManager man;
-    QSqlTableModel *pModel = new QSqlTableModel(this, man.getUserdb());
+    localUserdbManager man;
+    QSqlTableModel *pModel = new QSqlTableModel(this, man.getLocalUserdb());
 
     /* 设置表格样式 */
     pModel->setTable("user");
@@ -63,8 +63,8 @@ void allUserWidget::showPlayerTable(QString str) {
 }
 
 void allUserWidget::showQuestionerTable(QString str) {
-    userdbManager man;
-    QSqlTableModel *pModel = new QSqlTableModel(this, man.getUserdb());
+    localUserdbManager man;
+    QSqlTableModel *pModel = new QSqlTableModel(this, man.getLocalUserdb());
 
     /* 设置表格样式 */
     pModel->setTable("user");

@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
 //    userdbManager::initUserdb();
 //    worddbManager::initWorddb();
 
+    localUserdbManager::initLocalUserdb();
+
     /* 初始化注册、登录窗口，并在最初显示登录窗口 */
     signIn = new signInWidget(this);
     signUp = new signUpWidget(this);

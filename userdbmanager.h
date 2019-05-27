@@ -36,14 +36,7 @@ public:
     /**
      * @brief 构造函数。
      */
-    userdbManager();
-
-    /**
-     * @brief 数据库初始化，在程序开头建立数据库连接。
-     */
-    static void initUserdb();
-
-    void work(int a, int b);
+    userdbManager() = default;
 
     /**
      * @brief 按照用户名查询数据库中的某个用户。
@@ -51,16 +44,6 @@ public:
      * @return 若存在该用户，返回 true；否则返回 false。
      */
     bool queryUserdb(QString usr);
-
-    /**
-     * @brief 输出用户数据库中的所有记录。
-     */
-    void printUserdb();
-
-    /**
-     * @brief 删除用户数据库中的所有记录。
-     */
-    void clearUserdb();
 
     /**
      * @brief 向数据库中添加一个新用户。
@@ -104,11 +87,6 @@ public:
      * @param 出题者。
      */
     void updateQuestioner(const questioner &newQuestioner);
-
-    /**
-     * @brief 获取数据库对象的常量引用。
-     */
-    const QSqlDatabase &getUserdb();
 
 private:
     QSqlDatabase userdb;                /**< 用户数据库对象。 */

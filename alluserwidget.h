@@ -13,6 +13,7 @@
 #include <QAbstractItemView>
 #include "playerfilterdialog.h"
 #include "questionerfilterdialog.h"
+#include "localuserdbmanager.h"
 
 namespace Ui {
 class allUserWidget;

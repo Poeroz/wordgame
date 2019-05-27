@@ -24,12 +24,7 @@ QJsonObject tcpManager::sendData(const QJsonObject &data) {
                 array = socket->readAll();
                 doc = QJsonDocument::fromJson(array);
                 recData = doc.object();
-                if (!recData.contains(ACKFIELD) || recData[ACKFIELD] == NAK) {
-                    recData[STATUS] = FAILED;
-                }
-                else {
-                    recData[STATUS] = SUCCESS;
-                }
+                recData[STATUS] = SUCCESS;
             }
             else {
                 recData[STATUS] = FAILED;

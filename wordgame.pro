@@ -28,6 +28,7 @@ CONFIG += c++11
 SOURCES += \
 	alluserwidget.cpp \
 	chooselevelwidget.cpp \
+	localuserdbmanager.cpp \
         main.cpp \
         mainwindow.cpp \
 	playerfailedwidget.cpp \
@@ -52,6 +53,7 @@ SOURCES += \
 HEADERS += \
 	alluserwidget.h \
 	chooselevelwidget.h \
+	localuserdbmanager.h \
         mainwindow.h \
 	playerfailedwidget.h \
 	playerfilterdialog.h \

@@ -17,6 +17,7 @@
 #include "playerwindow.h"
 #include "questionerwindow.h"
 #include "userdbmanager.h"
+#include "localuserdbmanager.h"
 
 namespace Ui {
 class MainWindow;
