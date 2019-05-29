@@ -1,3 +1,10 @@
+/**
+ * @file tcpmanager.cpp
+ *
+ * @brief 客户端 TCP 通信管理。
+ * @author 房庆凯 - 2017211131
+ */
+
 #include "tcpmanager.h"
 
 tcpManager::tcpManager(QString _IP, quint16 _PORT)

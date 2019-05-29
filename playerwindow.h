@@ -20,6 +20,7 @@
 #include "playerfailedwidget.h"
 #include "matchgamingwidget.h"
 #include "tcpmanager.h"
+#include "endmatchwidget.h"
 
 namespace Ui {
 class playerWindow;
@@ -47,6 +48,8 @@ public:
      * @param user 当前闯关者的信息。
      */
     void init(player user);
+
+    void cancelMatch();
 
 signals:
     /**
@@ -116,9 +119,25 @@ private slots:
      */
     void switchFailedToChLevel();
 
-    void switchMatchToReady(int totalTime);
+    /**
+     * @brief 从匹配模式游戏中界面切换到匹配模式结束。
+     */
+    void switchMatchToEnd(int totalTime);
 
+    /**
+     * @brief 从匹配中界面返回到准备界面。
+     */
+    void switchMatchToReady();
+
+    /**
+     * @brief 从准备界面进入到匹配界面。
+     */
     void switchReadyToMatch();
+
+    /**
+     * @brief 从匹配模式结束界面返回到准备界面。
+     */
+    void switchEndToReady();
 
     /**
      * @brief 关闭窗口。
@@ -132,6 +151,7 @@ private:
     playerGamingWidget *gaming;                 /**< 游戏界面。 */
     allUserWidget *allUser;                     /**< 显示所有用户信息的界面。 */
     matchGamingWidget *match;
+    endMatchWidget *endMatch;
     chooseLevelWidget *chLevel;                 /**< 选择关卡的界面。 */
     playerPassedWidget *passed;                 /**< 闯关成功的界面。 */
     playerFailedWidget *failed;                 /**< 闯关失败的界面。 */

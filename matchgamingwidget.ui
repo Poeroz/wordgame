@@ -116,6 +116,19 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
+  <widget class="QPushButton" name="cancelBtn">
+   <property name="geometry">
+    <rect>
+     <x>252</x>
+     <y>350</y>
+     <width>81</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>取消匹配</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

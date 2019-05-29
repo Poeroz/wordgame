@@ -28,6 +28,7 @@ CONFIG += c++11
 SOURCES += \
 	alluserwidget.cpp \
 	chooselevelwidget.cpp \
+	endmatchwidget.cpp \
 	localuserdbmanager.cpp \
         main.cpp \
         mainwindow.cpp \
@@ -54,6 +55,7 @@ SOURCES += \
 HEADERS += \
 	alluserwidget.h \
 	chooselevelwidget.h \
+	endmatchwidget.h \
 	localuserdbmanager.h \
         mainwindow.h \
 	matchgamingwidget.h \
@@ -79,6 +81,7 @@ HEADERS += \
 FORMS += \
 	alluserwidget.ui \
 	chooselevelwidget.ui \
+	endmatchwidget.ui \
         mainwindow.ui \
 	matchgamingwidget.ui \
 	playerfailedwidget.ui \

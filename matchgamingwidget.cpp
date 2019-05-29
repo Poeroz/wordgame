@@ -1,3 +1,10 @@
+/**
+ * @file matchgamingwidget.cpp
+ *
+ * @brief 匹配模式游戏界面。
+ * @author 房庆凯 - 2017211131
+ */
+
 #include "matchgamingwidget.h"
 #include "ui_matchgamingwidget.h"
 
@@ -28,6 +35,18 @@ void matchGamingWidget::init(QString text) {
     ui->okBtn->hide();
     ui->matchLabel->show();
     ui->matchLabel->setText(text);
+    ui->cancelBtn->show();
+}
+
+void matchGamingWidget::end(QString text) {
+    ui->wordLabel->hide();
+    ui->passLabel->hide();
+    ui->progressBar->hide();
+    ui->statusLabel->hide();
+    ui->wordLineEdit->hide();
+    ui->okBtn->hide();
+    ui->matchLabel->show();
+    ui->matchLabel->setText(text);
 }
 
 void matchGamingWidget::start(const QVector<QString> &rhs) {
@@ -43,6 +62,7 @@ void matchGamingWidget::start(const QVector<QString> &rhs) {
     ui->wordLineEdit->show();
     ui->okBtn->show();
     ui->matchLabel->hide();
+    ui->cancelBtn->hide();
 
     ui->progressBar->setOrientation(Qt::Horizontal);
     ui->progressBar->setMinimum(0);
@@ -101,6 +121,9 @@ void matchGamingWidget::on_okBtn_clicked() {
     else {
         emit endGame(-1);
         ui->wordLineEdit->clear();
-
     }
+}
+
+void matchGamingWidget::on_cancelBtn_clicked() {
+    emit cancelMatch();
 }

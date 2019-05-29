@@ -1,3 +1,10 @@
+/**
+ * @file localuserdbmanager.cpp
+ *
+ * @brief 本地数据库管理。
+ * @author 房庆凯 - 2017211131
+ */
+
 #include "localuserdbmanager.h"
 
 localUserdbManager::localUserdbManager() {
@@ -53,7 +60,7 @@ void localUserdbManager::clearLocalUserdb() {
     }
 }
 
-const QSqlDatabase localUserdbManager::getLocalUserdb() {
+const QSqlDatabase &localUserdbManager::getLocalUserdb() {
     clearLocalUserdb();
 
     QJsonObject json;
@@ -77,42 +84,4 @@ const QSqlDatabase localUserdbManager::getLocalUserdb() {
         }
     }
     return localUserdb;
-}
-
-const QSqlDatabase localUserdbManager::getOnlineUserdb() {
-    clearLocalUserdb();
-
-    QJsonObject json;
-    json["type"] = "getOnline";
-    QJsonObject rec = tcpMan.sendData(json);
-    if (!rec.contains(STATUS) || rec[STATUS].toString() == FAILED) {
-        qDebug() << "failed";
-    }
-    else {
-        QJsonArray tmpArray = rec["table"].toArray();
-        for (int index = 0; index < tmpArray.size(); index++) {
-            QJsonObject tmpObject = tmpArray[index].toObject();
-            insertLocalUserdb(tmpObject["usr"].toString(), tmpObject["name"].toString(), "", false, 0, 0, 0, 0);
-        }
-    }
-    return localUserdb;
-}
-
-bool localUserdbManager::queryLocalUserdb(QString usr) {
-    QSqlQuery query(localUserdb);
-    QString str = "select * from user where username = :usr";
-    query.prepare(str);
-    query.bindValue(":usr", usr);
-    if (!query.exec()) {
-        qDebug() << "query error";
-    }
-    else {
-        if (query.next()) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    return false;
 }

@@ -99,7 +99,7 @@ private:
     int nowLevel;                                       /**< 当前关卡数。 */
     int passCnt;                                        /**< 本关当前轮数。 */
     int totalLength;                                    /**< 本关单词总长度。 */
-    QElapsedTimer *totalTime;                                  /**< 本关花费的总时间。 */
+    QElapsedTimer *totalTime;                           /**< 本关花费的总时间。 */
     QTimer *myTimer;                                    /**< 倒计时用定时器。 */
 };
 
