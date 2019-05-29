@@ -36,7 +36,7 @@ public:
      * @param winState 游戏结果（-1 表示输，0 表示平局，1 表示胜利）。
      * @param getExp 获得的经验值。
      */
-    void init(int winState, int getExp);
+    void init(bool winState, int getExp);
 
 signals:
     /**

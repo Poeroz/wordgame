@@ -122,7 +122,7 @@ private slots:
     /**
      * @brief 从匹配模式游戏中界面切换到匹配模式结束。
      */
-    void switchMatchToEnd(int totalTime);
+    void switchMatchToEnd(bool pass);
 
     /**
      * @brief 从匹配中界面返回到准备界面。

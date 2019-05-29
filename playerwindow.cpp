@@ -58,7 +58,7 @@ void playerWindow::init(player user) {
     connect(this, SIGNAL(updatePlayerInfo(const player&)), ready, SLOT(refreshPlayer(const player&)));
     connect(ready, SIGNAL(exitGame()), this, SLOT(closeWindow()));
     connect(ready, SIGNAL(matchGame()), this, SLOT(switchReadyToMatch()));
-    connect(match, SIGNAL(endGame(int)), this, SLOT(switchMatchToEnd(int)));
+    connect(match, SIGNAL(endGame(bool)), this, SLOT(switchMatchToEnd(bool)));
     connect(match, SIGNAL(cancelMatch()), this, SLOT(switchMatchToReady()));
     connect(endMatch, SIGNAL(endToReady()), this, SLOT(switchEndToReady()));
 }
@@ -161,44 +161,37 @@ void playerWindow::switchFailedToChLevel() {
     chLevel->show();
 }
 
-void playerWindow::switchMatchToEnd(int totalTime) {
-    match->end(tr("等待对方结束..."));
+void playerWindow::switchMatchToEnd(bool pass) {
     QJsonObject json;
     json["type"] = "endMatch";
     json["usr"] = currentPlayer->getUsername();
-    json["total"] = totalTime;
-    int winState, getExp;
-    while (true) {
-        QJsonObject rec = tcpMan.sendData(json);
-        if (!rec.contains(STATUS) || rec[STATUS].toString() == FAILED) {
-            qDebug() << "failed";
-        }
-        else {
-            if (rec["endStatus"].toBool()) {
-                winState = rec["win"].toInt();
-                getExp = rec["exp"].toInt();
-                int plusExp = rec["exp"].toInt();
-                int needExp = currentPlayer->getGrade() * 5;
-                int restExp = plusExp + currentPlayer->getExperience();
-                while (restExp >= needExp) {
-                    restExp -= needExp;
-                    currentPlayer->setGrade(currentPlayer->getGrade() + 1);
-                    needExp = currentPlayer->getGrade() * 5;
-                }
-                currentPlayer->setExperience(restExp);
+    json["pass"] = pass ? 1 : -1;
+    bool winState;
+    int getExp;
 
-                userdbManager man;
-                man.updatePlayer(*currentPlayer);
-
-                emit updatePlayerInfo(*currentPlayer);
-                break;
-            }
-        }
-        QElapsedTimer t;
-        t.start();
-        while(t.elapsed() < 100)
-            QCoreApplication::processEvents();
+    QJsonObject rec = tcpMan.sendData(json);
+    if (!rec.contains(STATUS) || rec[STATUS].toString() == FAILED) {
+        qDebug() << "failed";
     }
+    else {
+        winState = rec["win"].toBool();
+        getExp = rec["exp"].toInt();
+        int plusExp = rec["exp"].toInt();
+        int needExp = currentPlayer->getGrade() * 5;
+        int restExp = plusExp + currentPlayer->getExperience();
+        while (restExp >= needExp) {
+            restExp -= needExp;
+            currentPlayer->setGrade(currentPlayer->getGrade() + 1);
+            needExp = currentPlayer->getGrade() * 5;
+        }
+        currentPlayer->setExperience(restExp);
+
+        userdbManager man;
+        man.updatePlayer(*currentPlayer);
+
+        emit updatePlayerInfo(*currentPlayer);
+    }
+
     match->hide();
     endMatch->show();
     endMatch->init(winState, getExp);

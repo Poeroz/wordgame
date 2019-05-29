@@ -112,14 +112,14 @@ void matchGamingWidget::on_okBtn_clicked() {
         if (passCnt == 10) {
             int realTime = totalTime->elapsed() / 1000 + 1 - 5 * 10;
             passCnt = 0;
-            emit endGame(realTime);
+            emit endGame(true);
         }
         else {
             showNewWord();
         }
     }
     else {
-        emit endGame(-1);
+        emit endGame(false);
         ui->wordLineEdit->clear();
     }
 }

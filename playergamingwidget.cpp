@@ -18,8 +18,8 @@ playerGamingWidget::playerGamingWidget(QWidget *parent) :
     totalTime = new QElapsedTimer;
     connect(myTimer, SIGNAL(timeout()), this, SLOT(updateProgressBar()));
 
-    /* 使用正则表达式来限制用户只可输入小写字母 */
-    ui->wordLineEdit->setValidator(new QRegExpValidator(QRegExp("^[a-z]{1,18}$"), this));
+    /* 使用正则表达式来限制用户只可输入大、小写字母 */
+    ui->wordLineEdit->setValidator(new QRegExpValidator(QRegExp("^[a-zA-Z]{1,18}$"), this));
 }
 
 playerGamingWidget::~playerGamingWidget() {

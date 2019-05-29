@@ -60,9 +60,9 @@ public:
 signals:
     /**
      * @brief 游戏结束的信号。
-     * @param totalTime 游戏花费的总时间。
+     * @param pass 是否通过。
      */
-    void endGame(int totalTime);
+    void endGame(bool pass);
 
     /**
      * @brief 取消匹配的信号。

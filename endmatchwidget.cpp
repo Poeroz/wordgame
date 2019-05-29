@@ -18,12 +18,9 @@ endMatchWidget::~endMatchWidget() {
     delete ui;
 }
 
-void endMatchWidget::init(int winState, int getExp) {
-    if (winState == 1) {
+void endMatchWidget::init(bool winState, int getExp) {
+    if (winState) {
         ui->winLabel->setText(tr("你赢了"));
-    }
-    else if (winState == 0) {
-        ui->winLabel->setText(tr("平局"));
     }
     else {
         ui->winLabel->setText(tr("你输了"));
