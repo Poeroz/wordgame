@@ -9,6 +9,7 @@
 #define PLAYERWINDOW_H
 
 #include <QMainWindow>
+#include <QElapsedTimer>
 #include "player.h"
 #include "userdbmanager.h"
 #include "alluserwidget.h"
@@ -17,6 +18,8 @@
 #include "chooselevelwidget.h"
 #include "playerpassedwidget.h"
 #include "playerfailedwidget.h"
+#include "matchgamingwidget.h"
+#include "tcpmanager.h"
 
 namespace Ui {
 class playerWindow;
@@ -113,16 +116,22 @@ private slots:
      */
     void switchFailedToChLevel();
 
+    void switchMatchToReady(int totalTime);
+
+    void switchReadyToMatch();
+
     /**
      * @brief 关闭窗口。
      */
     void closeWindow();
 
 private:
+    void clearMatch();
     Ui::playerWindow *ui;
     playerReadyWidget *ready;                   /**< 准备界面。 */
     playerGamingWidget *gaming;                 /**< 游戏界面。 */
     allUserWidget *allUser;                     /**< 显示所有用户信息的界面。 */
+    matchGamingWidget *match;
     chooseLevelWidget *chLevel;                 /**< 选择关卡的界面。 */
     playerPassedWidget *passed;                 /**< 闯关成功的界面。 */
     playerFailedWidget *failed;                 /**< 闯关失败的界面。 */

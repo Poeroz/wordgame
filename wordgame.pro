@@ -31,6 +31,7 @@ SOURCES += \
 	localuserdbmanager.cpp \
         main.cpp \
         mainwindow.cpp \
+	matchgamingwidget.cpp \
 	playerfailedwidget.cpp \
 	playerfilterdialog.cpp \
 	playergamingwidget.cpp \
@@ -55,6 +56,7 @@ HEADERS += \
 	chooselevelwidget.h \
 	localuserdbmanager.h \
         mainwindow.h \
+	matchgamingwidget.h \
 	playerfailedwidget.h \
 	playerfilterdialog.h \
 	playergamingwidget.h \
@@ -78,6 +80,7 @@ FORMS += \
 	alluserwidget.ui \
 	chooselevelwidget.ui \
         mainwindow.ui \
+	matchgamingwidget.ui \
 	playerfailedwidget.ui \
 	playerfilterdialog.ui \
 	playergamingwidget.ui \

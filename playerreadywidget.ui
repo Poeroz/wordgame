@@ -19,7 +19,7 @@
      <x>60</x>
      <y>80</y>
      <width>241</width>
-     <height>231</height>
+     <height>259</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -87,6 +87,13 @@
      <widget class="QPushButton" name="allUserBtn">
       <property name="text">
        <string>查看所有用户</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="matchBtn">
+      <property name="text">
+       <string>开始匹配</string>
       </property>
      </widget>
     </item>

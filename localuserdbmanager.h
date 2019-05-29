@@ -20,6 +20,8 @@ public:
     void insertLocalUserdb(QString usr, QString name, QString pwd, bool role, int grade, int level, int exp, int qcnt);
     void clearLocalUserdb();
     const QSqlDatabase getLocalUserdb();
+    const QSqlDatabase getOnlineUserdb();
+    bool queryLocalUserdb(QString usr);
 private:
     QSqlDatabase localUserdb;
 };

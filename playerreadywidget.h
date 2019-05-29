@@ -10,6 +10,7 @@
 
 #include <QWidget>
 #include "player.h"
+#include "tcpmanager.h"
 
 namespace Ui {
 class playerReadyWidget;
@@ -60,6 +61,8 @@ private slots:
      */
     void on_exitBtn_clicked();
 
+    void on_matchBtn_clicked();
+
 signals:
     /**
      * @brief 从准备界面切换到显示所有用户的界面的信号。
@@ -75,6 +78,11 @@ signals:
      * @brief 退出游戏的信号。
      */
     void exitGame();
+
+    /**
+     * @brief 匹配信号。
+     */
+    void matchGame();
 
 private:
     Ui::playerReadyWidget *ui;

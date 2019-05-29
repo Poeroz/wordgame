@@ -20,7 +20,7 @@ QJsonObject tcpManager::sendData(const QJsonObject &data) {
         qint64 wsta = socket->write(array);
         bool fsta = socket->flush();
         if (wsta && fsta) {
-            if (socket->waitForReadyRead(10000)) {
+            if (socket->waitForReadyRead(3000)) {
                 array = socket->readAll();
                 doc = QJsonDocument::fromJson(array);
                 recData = doc.object();

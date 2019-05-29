@@ -42,3 +42,7 @@ void playerReadyWidget::refreshPlayer(const player &newPlayer) {
 void playerReadyWidget::on_exitBtn_clicked() {
     emit exitGame();
 }
+
+void playerReadyWidget::on_matchBtn_clicked() {
+    emit matchGame();
+}

@@ -29,6 +29,8 @@ void playerWindow::init(player user) {
     chLevel = new chooseLevelWidget(this);
     passed = new playerPassedWidget(this);
     failed = new playerFailedWidget(this);
+    match = new matchGamingWidget(this);
+    match->hide();
     ready->show();
     ready->init(user);
     gaming->hide();
@@ -53,6 +55,8 @@ void playerWindow::init(player user) {
     connect(failed, SIGNAL(failedToChLevel()), this, SLOT(switchFailedToChLevel()));
     connect(this, SIGNAL(updatePlayerInfo(const player&)), ready, SLOT(refreshPlayer(const player&)));
     connect(ready, SIGNAL(exitGame()), this, SLOT(closeWindow()));
+    connect(ready, SIGNAL(matchGame()), this, SLOT(switchReadyToMatch()));
+    connect(match, SIGNAL(endGame(int)), this, SLOT(switchMatchToReady(int)));
 }
 
 void playerWindow::switchReadyToAllUser() {
@@ -143,7 +147,80 @@ void playerWindow::switchFailedToChLevel() {
     chLevel->show();
 }
 
+
+
+void playerWindow::switchMatchToReady(int totalTime) {
+    match->init(tr("等待对方结束..."));
+    QJsonObject json;
+    json["type"] = "endMatch";
+    json["usr"] = currentPlayer->getUsername();
+    json["total"] = totalTime;
+    while (true) {
+        QJsonObject rec = tcpMan.sendData(json);
+        if (!rec.contains(STATUS) || rec[STATUS].toString() == FAILED) {
+            qDebug() << "failed";
+        }
+        else {
+            if (rec["endStatus"].toBool()) {
+                int plusExp = rec["exp"].toInt();
+                int needExp = currentPlayer->getGrade() * 5;
+                int restExp = plusExp + currentPlayer->getExperience();
+                while (restExp >= needExp) {
+                    restExp -= needExp;
+                    currentPlayer->setGrade(currentPlayer->getGrade() + 1);
+                    needExp = currentPlayer->getGrade() * 5;
+                }
+                currentPlayer->setExperience(restExp);
+
+                userdbManager man;
+                man.updatePlayer(*currentPlayer);
+
+                emit updatePlayerInfo(*currentPlayer);
+                break;
+            }
+        }
+        QElapsedTimer t;
+        t.start();
+        while(t.elapsed()<300)
+            QCoreApplication::processEvents();
+    }
+    match->hide();
+    ready->show();
+}
+
+void playerWindow::switchReadyToMatch() {
+    ready->hide();
+    match->show();
+    match->init(tr("正在匹配..."));
+    QJsonObject json;
+    json["type"] = "matchPlayer";
+    json["usr"] = currentPlayer->getUsername();
+    while (true) {
+        QJsonObject rec = tcpMan.sendData(json);
+        if (!rec.contains(STATUS) || rec[STATUS].toString() == FAILED) {
+            qDebug() << "failed";
+        }
+        else {
+            if (rec["matchStatus"].toBool()) {
+                QVector<QString> wordlist;
+                QJsonArray tmpArray = rec["wordlist"].toArray();
+                for (int index = 0; index < tmpArray.size(); index++) {
+                    QJsonObject tmpObject = tmpArray[index].toObject();
+                    wordlist.push_back(tmpObject["text"].toString());
+                }
+                match->start(wordlist);
+                break;
+            }
+        }
+        QElapsedTimer t;
+        t.start();
+        while(t.elapsed()<100)
+            QCoreApplication::processEvents();
+    }
+}
+
 void playerWindow::closeWindow() {
     this->close();
 }
+
 
