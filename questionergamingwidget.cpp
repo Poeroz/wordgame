@@ -15,6 +15,8 @@ questionerGamingWidget::questionerGamingWidget(QWidget *parent) :
 
     /* 使用正则表达式来限制用户只可输入大、小写字母 */
     ui->wordLineEdit->setValidator(new QRegExpValidator(QRegExp("^[a-zA-Z]{1,18}$"), this));
+
+    ui->wordLineEdit->setFocus();
 }
 
 questionerGamingWidget::~questionerGamingWidget() {
@@ -24,7 +26,12 @@ questionerGamingWidget::~questionerGamingWidget() {
 void questionerGamingWidget::on_okBtn_clicked() {
     QString newWord = ui->wordLineEdit->text();
     worddbManager man;
-    if (man.queryWorddb(newWord)) {                             /* 查询单词是否存在 */
+    if (newWord == "") {
+        ui->statusLabel->setText(tr("单词不能为空！"));
+        ui->wordLineEdit->clear();
+        ui->wordLineEdit->setFocus();
+    }
+    else if (man.queryWorddb(newWord)) {                             /* 查询单词是否存在 */
         ui->statusLabel->setText(tr("该单词已存在！"));
         ui->wordLineEdit->clear();
         ui->wordLineEdit->setFocus();
