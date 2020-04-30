@@ -103,10 +103,10 @@ void matchGamingWidget::updateProgressBar() {
 
 void matchGamingWidget::on_okBtn_clicked() {
     QString userInput = ui->wordLineEdit->text();
+    ui->wordLineEdit->clear();
     if (userInput == ui->wordLabel->text()) {
         ui->statusLabel->setText(tr("正确！"));
         ui->progressBar->setValue(restTime = 5);             /* 恢复倒计时时间，准备进入下一轮 */
-        ui->wordLineEdit->clear();
 
         /* 通过当前关卡，进入下一关 */
         if (passCnt == 10) {
@@ -120,7 +120,6 @@ void matchGamingWidget::on_okBtn_clicked() {
     }
     else {
         emit endGame(false);
-        ui->wordLineEdit->clear();
     }
 }
 

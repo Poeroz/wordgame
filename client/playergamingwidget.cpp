@@ -57,10 +57,10 @@ void playerGamingWidget::updateProgressBar() {
 
 void playerGamingWidget::on_okBtn_clicked() {
     QString userInput = ui->wordLineEdit->text();
+    ui->wordLineEdit->clear();
     if (userInput == ui->wordLabel->text()) {
         ui->statusLabel->setText(tr("正确！"));
         ui->progressBar->setValue(restTime = TOTAL_TIME[nowLevel]);             /* 恢复倒计时时间，准备进入下一轮 */
-        ui->wordLineEdit->clear();
 
         /* 通过当前关卡，进入下一关 */
         if (passCnt == TOTAL_ROUND[nowLevel]) {
@@ -79,7 +79,6 @@ void playerGamingWidget::on_okBtn_clicked() {
     }
     else {
         QMessageBox::warning(this, tr("提示"), tr("闯关失败！"), QMessageBox::Ok);
-        ui->wordLineEdit->clear();
         emit gamingToFailed();
     }
 }
